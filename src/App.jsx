@@ -1,10 +1,16 @@
 import './App.css'
+import Categorybox from './components/common/Categorybox'
+// import Dialog from './components/common/Dialog'
+
 
 function App() {
 
   return (
     <>
-      <h1>Hello World!</h1>
+      <Categorybox />
+      {/* <Dialog>
+        hello
+      </Dialog> */}
     </>
   )
 }

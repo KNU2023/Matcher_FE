@@ -1,0 +1,13 @@
+.dialogButton {
+    width: 92px;
+    height: 22px;
+    border-radius: 10px;
+    border: 2px solid #03C75A;
+    background-color: #ffffff;
+    box-shadow: 4px 4px 2px rgba(0,0,0,0.2);
+}
+
+.dialogButton:hover {
+    background-color: #03C75A;
+    color: #ffffff;
+}
