@@ -36,24 +36,7 @@
     align-items: center;
 }
 
-.Categorybox_iconBox{
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
-    margin: 0px 25px 14px 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    color: #8B95A1;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-}
 
-.Categorybox_iconBox:hover {
-    color: #2F9B79; 
-}
 
 .Categorybox__content{
     display: flex;

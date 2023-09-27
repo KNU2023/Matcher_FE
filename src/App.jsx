@@ -1,16 +1,15 @@
 import './App.css'
-import Categorybox from './components/common/Categorybox'
-// import Dialog from './components/common/Dialog'
+import IconboxReserve from './components/organisms/button/IconboxReserve'
+import IconboxJob from './components/organisms/button/IconboxJob'
 
 
 function App() {
 
   return (
     <>
-      <Categorybox />
-      {/* <Dialog>
-        hello
-      </Dialog> */}
+      <IconboxReserve />
+      <IconboxJob />
+
     </>
   )
 }

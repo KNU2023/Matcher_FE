@@ -6,11 +6,3 @@
     margin: 0 auto;
     padding: 7px 9px 40px 16px;
 }
-
-.container__X{
-    width: 569px;
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}
