@@ -32,6 +32,7 @@ const Box = ({
   textAlign,
 }) => {
   return (
+    <>
     <StyledBox
       width={width}
       height={height}
@@ -48,6 +49,8 @@ const Box = ({
     >
       {children}
     </StyledBox>
+    </>
+    
   );
 };
 

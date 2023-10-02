@@ -1,4 +1,4 @@
-import Button from "../atoms/Button";
+import Button from "../../atoms/button/Button";
 
 const Iconbox = ({ children, onClick }) => {
 
@@ -15,6 +15,7 @@ const Iconbox = ({ children, onClick }) => {
             display="flex"
             flexDirection="column"
             justifyContent="center"
+            border="1px solid #E3E5E8"
             alignItems="center"
             backgroundColor="#ffffff"
             boxShadow="4px 4px 4px rgba(0, 0, 0, 0.2)"

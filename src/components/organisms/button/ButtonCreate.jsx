@@ -1,4 +1,4 @@
-import Dialogbutton from "../../molecules/Dialogbutton";
+import Dialogbutton from "../../molecules/button/Dialogbutton";
 
 const ButtonCreate = () => {
     const handleButtonClick = () => {

@@ -1,4 +1,4 @@
-import Button from "../atoms/Button";
+import Button from "../../atoms/button/Button";
 
 const Dialogbutton = ({ title, onClick }) => {
 

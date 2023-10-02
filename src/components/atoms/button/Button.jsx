@@ -30,7 +30,7 @@ const Button = ({
   borderRadius,
   border,
   backgroundColor,
-  boxShadow,
+  boxshadow,
   margin,
   onClick,
   hoverStyle,
@@ -46,23 +46,26 @@ const Button = ({
   };
 
   return (
-    <StyledButton
-      width={width}
-      height={height}
-      fontSize={fontSize}
-      color={color}
-      borderRadius={borderRadius}
-      border={border}
-      backgroundColor={backgroundColor}
-      boxShadow={boxShadow}
-      margin={margin}
-      onClick={onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      hoverStyle={isHovered ? hoverStyle : null}
-    >
-      {children}
-    </StyledButton>
+    <>
+      <StyledButton
+        width={width}
+        height={height}
+        fontSize={fontSize}
+        color={color}
+        borderRadius={borderRadius}
+        border={border}
+        backgroundColor={backgroundColor}
+        boxShadow={boxshadow}
+        margin={margin}
+        onClick={onClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        hoverStyle={isHovered ? hoverStyle : null}
+      >
+        {children}
+      </StyledButton>
+    </>
+
   );
 };
 
