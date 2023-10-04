@@ -3,6 +3,26 @@ import AlarmContentBox from "../molecules/box/AlarmContentBox";
 import AlarmTitleBox from "./box/AlarmTitleBox";
 import styled from "styled-components";
 
+
+const Alarm = () => {
+    return (
+        <Wrapper>
+            <AlarmBox>
+                <AlarmTitleBox />
+                <AlarmBoxWrapper>
+                    <AlarmContentBox />
+                </AlarmBoxWrapper>
+            </AlarmBox>
+        </Wrapper>
+    )
+}
+
+export default Alarm;
+
+const Wrapper = styled.div`
+    margin-left: 12px;
+`;
+
 const AlarmBoxWrapper = styled.div`
     width: 286px;
     height: 349px;
@@ -23,18 +43,3 @@ const AlarmBoxWrapper = styled.div`
         background-color: #888888; /* 스크롤바 hover 시 색상 변경 */
     }
 `;
-
-const Alarm = () => {
-    return (
-        <>
-            <AlarmBox>
-                <AlarmTitleBox />
-                <AlarmBoxWrapper>
-                    <AlarmContentBox />
-                </AlarmBoxWrapper>
-            </AlarmBox>
-        </>
-    )
-}
-
-export default Alarm;

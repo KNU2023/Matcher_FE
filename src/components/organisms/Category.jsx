@@ -5,6 +5,10 @@ import IconboxReserve from "./button/IconboxReserve";
 import IconboxMail from "./button/IconboxMail";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+    margin-left: 12px;
+`;
+
 const CategoryWrapper = styled.div`
     width: 324px;
     height: 99px;
@@ -16,7 +20,7 @@ const CategoryWrapper = styled.div`
 
 const Category = () => {
     return (
-        <>
+        <Wrapper>
             <CategoryBox>
                 <CategoryTitleBox />
                 <CategoryWrapper>
@@ -25,7 +29,7 @@ const Category = () => {
                     <IconboxMail />
                 </CategoryWrapper>
             </CategoryBox>
-        </>
+        </Wrapper>
     )
 }
 

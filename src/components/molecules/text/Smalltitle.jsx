@@ -1,15 +1,15 @@
 import Text from "../../atoms/text/Text";
 
-const Smalltitle = ({ content }) => {
+const Smalltitle = ({ content, color, justifyContent, weight }) => {
     return (
         <>
             <Text
                 size="10px"
-                color="#000000"
-                weight="normal"
+                color={color}
+                weight={weight}
                 display="flex"
                 flexDirection="row"
-                justifyContent="center"
+                justifyContent={justifyContent}
                 textAlign="center"
                 margin="0px"
             >
