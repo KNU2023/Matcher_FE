@@ -10,7 +10,7 @@ const Login = () => {
       <LoginWrapper>
         <LoginBox>
           <LoginBoxWrapper>
-            <Smalltitle content="으라차차 페이지를 찾아주셔서 감사합니다." />
+            <Smalltitle content="Matcher 페이지를 찾아주셔서 감사합니다." />
             <KaKaoLoginBox>
               <ImBubble size="18" color="#000000" />
               <LoginText>카카오 로그인</LoginText>

@@ -4,12 +4,12 @@ const ContentBox = ({ children }) => {
     return (
         <>
             <Box
-                width="179px"
-                height="150px"
+                width="146px"
+                height="124px"
                 borderRadius="10px"
                 border="2px solid #03C75A"
                 margin="0 auto"
-                padding="13px 16px 13px 17px"
+                padding="13px 16px 10px 17px"
             >
                 {children}
             </Box>

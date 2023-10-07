@@ -20,7 +20,7 @@ const LoginComplete = () => {
               <ContentWrapper>
                 <LogoutTitle size="14" weight="bold" content="이름님" />
                 <DivideBar />
-                <Smalltitle color="#606060" content="으라차차 ID" />
+                <Smalltitle color="#606060" content="Matcher ID" />
                 <Img margin="0px 0px 0px 4px">{lock}</Img>
               </ContentWrapper>
               <Smalltitle

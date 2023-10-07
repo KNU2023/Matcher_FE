@@ -5,6 +5,7 @@ import LoginComplete from "./components/organisms/LoginComplete";
 import Alarm from "./components/organisms/Alarm";
 import MainBox from "./components/molecules/box/MainBox";
 import styled from "styled-components";
+import DialogSkeleton from "./components/organisms/box/DialogSkeleton";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -20,7 +21,9 @@ function App() {
     <>
       <Header />
       <ContentWrapper>
-        <MainBox />
+        <MainBox>
+          <DialogSkeleton />
+        </MainBox>
         <SectionWrapper>
           <Category />
           <LoginComplete />
