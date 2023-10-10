@@ -2,7 +2,6 @@ import CheckSignBox from "../../molecules/box/CheckSignBox";
 import TitleboxText from "../../molecules/text/TitleboxText";
 import { BsCheckCircle } from "react-icons/bs";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useState } from "react";
 import styled from "styled-components";
 
 const BoxWrapper = styled.div`
@@ -13,9 +12,7 @@ const BoxWrapper = styled.div`
     text-align: center;
 `;
 
-const CheckSign = () => {
-
-    const [isChecked, setIsChecked] = useState(false);
+const CheckSign = ({ isChecked, setIsChecked }) => {
 
     const toggleCheck = () => {
         setIsChecked(!isChecked);
@@ -25,7 +22,7 @@ const CheckSign = () => {
         <>
             <CheckSignBox>
                 <BoxWrapper>
-                {isChecked ? (
+                    {isChecked ? (
                         <BsCheckCircleFill
                             size="22px"
                             color="#2F9B79"

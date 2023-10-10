@@ -25,7 +25,7 @@ const MainTitle = styled.span`
 
 const SubTitle = styled.span`
     font-size : 20px;
-    line-height: 20px;
+    line-height: 25px;
     color: #A6D4C5;
     font-weight: bold;
 `;
