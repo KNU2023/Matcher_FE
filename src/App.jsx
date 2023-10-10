@@ -6,6 +6,7 @@ import Alarm from "./components/organisms/Alarm";
 import MainBox from "./components/molecules/box/MainBox";
 import styled from "styled-components";
 import DialogSkeleton from "./components/organisms/box/DialogSkeleton";
+import CheckSign from "./components/organisms/box/CheckSign";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const SectionWrapper = styled.div`
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header />
       <ContentWrapper>
         <MainBox>
           <DialogSkeleton />
@@ -27,10 +28,11 @@ function App() {
         <SectionWrapper>
           <Category />
           <LoginComplete />
-          {/* <Login /> */}
+          <Login />
           <Alarm />
         </SectionWrapper>
-      </ContentWrapper>
+      </ContentWrapper> */}
+      <CheckSign/>
     </>
   );
 }
