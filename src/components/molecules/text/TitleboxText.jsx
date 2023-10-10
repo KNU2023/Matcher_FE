@@ -1,17 +1,17 @@
 import Text from "../../atoms/text/Text";
 
-const Smalltitle = ({ content, color, justifyContent, weight }) => {
+const TitleboxText = ({ content, color, margin }) => {
     return (
         <>
             <Text
-                size="10px"
+                size="16px"
                 color={color}
-                weight={weight}
+                weight="bold"
                 display="flex"
                 flexDirection="row"
-                justifyContent={justifyContent}
+                justifyContent="center"
                 textAlign="center"
-                margin="0px"
+                margin={margin}
             >
                 {content}
             </Text>
@@ -20,4 +20,4 @@ const Smalltitle = ({ content, color, justifyContent, weight }) => {
     )
 }
 
-export default Smalltitle;
+export default TitleboxText;

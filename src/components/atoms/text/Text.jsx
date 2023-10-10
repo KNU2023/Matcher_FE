@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledText = styled.span`
-  font-size: ${props => props.size || '16px'};
-  color: ${props => props.color || '#333'};
+  font-size: ${props => props.size || '10px'};
+  color: ${props => props.color || '#000000'};
   font-weight: ${props => props.weight || 'normal'};
   margin: ${props => props.margin || '0'};
   display: ${props => props.display || 'inline'};
   flex-direction: ${props => props.flexDirection || 'row'};
-  justify-content: ${props => props.justifyContent || 'flex-start'};
+  justify-content: ${props => props.justifyContent || 'center'};
   text-align: ${props => props.textAlign || 'left'};
 `;
 

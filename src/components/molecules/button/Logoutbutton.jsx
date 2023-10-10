@@ -8,7 +8,7 @@ const Logout = ({ children, onClick }) => {
             width="80px"
             height="31px"
             fontsize="10px"
-            margin="0px"
+            margin="0px 0px 0px 123px"
             color="#606060"
             display="flex"
             flexDirection="row"

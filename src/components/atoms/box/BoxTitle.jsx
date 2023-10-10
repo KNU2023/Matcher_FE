@@ -6,40 +6,34 @@ const StyledBox = styled.div`
   height: ${props => props.height || 'auto'};
   border-radius: ${props => props.borderRadius || '10px'};
   background-color: ${props => props.backgroundColor || '#ffffff'};
-  border: ${props => props.border || 'none'};
-  box-shadow: ${props => props.boxShadow || 'none'};
-  margin: ${props => props.margin || '0'};
+  border-bottom: ${props => props.borderBottom || 'none'};
   padding: ${props => props.padding || '0'};
 `;
 
-const Box = ({
+const BoxTitle = ({
   children,
   width,
   height,
   borderRadius,
   backgroundColor,
-  border,
-  boxShadow,
-  margin,
+  borderBottom,
   padding,
 }) => {
   return (
     <>
-    <StyledBox
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-      backgroundColor={backgroundColor}
-      border={border}
-      boxShadow={boxShadow}
-      margin={margin}
-      padding={padding}
-    >
-      {children}
-    </StyledBox>
+      <StyledBox
+        width={width}
+        height={height}
+        borderRadius={borderRadius}
+        backgroundColor={backgroundColor}
+        borderBottom={borderBottom}
+        padding={padding}
+      >
+        {children}
+      </StyledBox>
     </>
-    
+
   );
 };
 
-export default Box;
+export default BoxTitle;
