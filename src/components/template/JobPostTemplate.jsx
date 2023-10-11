@@ -5,7 +5,7 @@ import Category from "../organisms/Category";
 import Login from "../organisms/Login";
 import styled from "styled-components";
 
-const ReservationTemplate = () => {
+const JobPostTemplate = () => {
     return (
         <>
             <Header />
