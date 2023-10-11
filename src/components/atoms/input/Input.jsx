@@ -33,6 +33,8 @@ const Input = ({
   boxShadow,
   margin,
   padding,
+  value,
+  onChange,
   ...restProps
 }) => {
   return (
@@ -48,6 +50,8 @@ const Input = ({
       boxShadow={boxShadow}
       padding={padding}
       margin={margin}
+      value={value}
+      onChange={onChange}
       {...restProps}
     />
   );

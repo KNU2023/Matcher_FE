@@ -1,13 +1,9 @@
 import Signinbutton from "../../molecules/button/Signinbutton";
 
-const ButtonSignIn = () => {
-    const onClickSignIn = () => {
-        alert('회원가입 완료!');
-    }
-
+const ButtonSignIn = ({onClick}) => {
     return (
         <>
-            <Signinbutton title="회원가입" onClick={onClickSignIn}/>
+            <Signinbutton title="회원가입" onClick={onClick}/>
         </>
     )
 }
