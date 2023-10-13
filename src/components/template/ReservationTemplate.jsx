@@ -3,12 +3,17 @@ import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
 import Login from "../organisms/Login";
 import styled from "styled-components";
+import DialogSkeleton from "../organisms/box/DialogSkeleton";
 
 const ReservationTemplate = () => {
     return (
         <>
             <Wrapper>
-                <MainBox />
+                <MainBox>
+                    <DialogSkeleton />
+                    <DialogSkeleton />
+                    <DialogSkeleton />
+                </MainBox>
                 <ContentWrapper>
                     <Category />
                     <Login />

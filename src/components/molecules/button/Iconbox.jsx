@@ -2,10 +2,11 @@ import Button from "../../atoms/button/Button";
 
 const Iconbox = ({ children, onClick }) => {
 
-    const hoverStyle ={
+    const style ={
         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
         color: '#2F9B79',
     }
+
 
     return (
         <Button
@@ -20,7 +21,7 @@ const Iconbox = ({ children, onClick }) => {
             backgroundColor="#ffffff"
             boxShadow="4px 4px 4px rgba(0, 0, 0, 0.2)"
             borderRadius="10px"
-            hoverStyle={hoverStyle}
+            hoverStyle={style}
             onClick={onClick}
         >
             {children}
