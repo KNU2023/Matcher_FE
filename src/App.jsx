@@ -3,15 +3,17 @@ import RootLayout from "./page/Root";
 import ReservationPage from "./page/ReservationPage";
 import JobPostPage from "./page/JobPostPage";
 import SignInPage from "./page/SignInPage";
+import MailPage from "./page/mailPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-      { index: true, path:"", element: <ReservationPage /> },
+      { index: true, path: "", element: <ReservationPage /> },
       { path: "signin", element: <SignInPage /> },
-      { path: "jobpost", element: <JobPostPage />},
+      { path: "jobpost", element: <JobPostPage /> },
+      { path: "mail", element: <MailPage /> },
 
     ]
   }

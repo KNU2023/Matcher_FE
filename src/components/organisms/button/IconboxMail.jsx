@@ -3,19 +3,20 @@ import { ImBubble } from "react-icons/im";
 import Smalltitle from "../../molecules/text/Smalltitle";
 import IconWrapper from "../../molecules/div/IconWrapper";
 import { NavLink, useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsActive } from "../../../store/mailCategorySlice";
 
-
-
-const IconboxJob = () => {
-    const [isActive, setIsActive] = useState(false);
+const IconboxMail = () => {
+    const dispatch = useDispatch();
     const location = useLocation();
+    const isActive = useSelector((state) => state.mailCategory.isActive);
 
     useEffect(() => {
         if (location.pathname === "/mail") {
-            setIsActive(true);
+            dispatch(setIsActive(true));
         } else {
-            setIsActive(false);
+            dispatch(setIsActive(false));
         }
     }, [location]);
 
@@ -31,4 +32,4 @@ const IconboxJob = () => {
     )
 };
 
-export default IconboxJob;
+export default IconboxMail;

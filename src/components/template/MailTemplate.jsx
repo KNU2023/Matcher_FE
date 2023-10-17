@@ -1,4 +1,3 @@
-import Header from "../organisms/Header";
 import MainBox from "../molecules/box/MainBox";
 import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
@@ -8,7 +7,6 @@ import styled from "styled-components";
 const MailTemplate = () => {
     return (
         <>
-            <Header />
             <Wrapper>
                 <MainBox />
                 <ContentWrapper>
