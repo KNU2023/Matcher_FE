@@ -4,6 +4,7 @@ import ReservationPage from "./page/ReservationPage";
 import JobPostPage from "./page/JobPostPage";
 import SignInPage from "./page/SignInPage";
 import MailPage from "./page/mailPage";
+import JobPosCreatetPage from "./page/JobPostCreatePage";
 
 const router = createBrowserRouter([
   {
@@ -12,9 +13,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, path: "", element: <ReservationPage /> },
       { path: "signin", element: <SignInPage /> },
-      { path: "jobpost", element: <JobPostPage /> },
+      {
+        path: "jobpost",
+        children: [
+          { index: true, path: "", element: <JobPostPage /> },
+          { path: "create", element: <JobPosCreatetPage /> }
+        ]
+      },
       { path: "mail", element: <MailPage /> },
-
     ]
   }
 ])

@@ -4,16 +4,47 @@ import Category from "../organisms/Category";
 import Login from "../organisms/Login";
 import styled from "styled-components";
 import DialogSkeleton from "../organisms/box/DialogSkeleton";
+import TitleMainBox from "../molecules/div/TitleMainBox";
+import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
+import ReservationSearch from "../organisms/input/ReservationSearch";
+import { motion } from "framer-motion";
 
 const ReservationTemplate = () => {
+    const variants = {
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
+    }
+
     return (
         <>
             <Wrapper>
-                <MainBox>
-                    <DialogSkeleton />
-                    <DialogSkeleton />
-                    <DialogSkeleton />
-                </MainBox>
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                    transition={{ ease: "easeOut", duration: 2 }}
+                >
+                    <MainBox>
+                        <TitleMainBox>
+                            <TitleMainBoxText content="자리 예약" />
+                            <TitleMainBoxText content="예약 생성" margin="0px 0px 0px 27px" />
+                        </TitleMainBox>
+                        <ReservationSearch />
+                        <ContentBoxWrapper>
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                            <DialogSkeleton />
+                        </ContentBoxWrapper>
+                    </MainBox>
+                </motion.div>
                 <ContentWrapper>
                     <Category />
                     <Login />
@@ -34,4 +65,28 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+const ContentBoxWrapper = styled.div`
+    height: 483px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-top: 39px;
+    row-gap: 15px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+    width: 8px; /* Width of scrollbar */
+    height: 0px; /* Set to 0 for horizontal scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #C0C0C0; /* Scrollbar color */
+    border-radius: 4px; /* Round the corners of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of scrollbar track */
+  }
 `;

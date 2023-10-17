@@ -15,6 +15,8 @@ const IconboxJob = () => {
     useEffect(() => {
         if (location.pathname === "/jobpost") {
             dispatch(setIsActive(true));
+        } else if (location.pathname === "/jobpost/create") {
+            dispatch(setIsActive(true));
         } else {
             dispatch(setIsActive(false));
         }

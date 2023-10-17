@@ -10,6 +10,8 @@ const StyledText = styled.span`
   flex-direction: ${props => props.flexDirection || 'row'};
   justify-content: ${props => props.justifyContent || 'center'};
   text-align: ${props => props.textAlign || 'left'};
+  cursor: ${props => props.cursor || 'default'};
+  text-decoration: ${props => props.active ? 'underline' : 'none'};
 `;
 
 const Text = ({
@@ -22,6 +24,9 @@ const Text = ({
     flexDirection,
     justifyContent,
     textAlign,
+    active,
+    onClick,
+    cursor,
 }) => {
     return (
         <>
@@ -34,6 +39,9 @@ const Text = ({
                 flexDirection={flexDirection}
                 justifyContent={justifyContent}
                 textAlign={textAlign}
+                onClick={onClick}
+                active={active}
+                cursor={cursor}
             >
                 {children}
             </StyledText>
