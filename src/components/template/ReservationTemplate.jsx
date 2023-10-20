@@ -8,8 +8,20 @@ import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import ReservationSearch from "../organisms/input/ReservationSearch";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ReservationTemplate = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const onClickCreate = () => {
+        navigate("/create");
+    }
+
+    const onClickReserve = () => {
+        navigate("/");
+    }
     const variants = {
         visible: { opacity: 1 },
         hidden: { opacity: 0 },
@@ -26,8 +38,18 @@ const ReservationTemplate = () => {
                 >
                     <MainBox>
                         <TitleMainBox>
-                            <TitleMainBoxText content="자리 예약" />
-                            <TitleMainBoxText content="예약 생성" margin="0px 0px 0px 27px" />
+                            <TitleMainBoxText
+                                content="자리 예약"
+                                onClick={onClickReserve}
+                                cursor="pointer"
+                                active={location.pathname === "/"} />
+                            <TitleMainBoxText
+                                content="예약 생성"
+                                margin="0px 0px 0px 27px"
+                                onClick={onClickCreate}
+                                cursor="pointer"
+                                active={location.pathname === "create"}
+                            />
                         </TitleMainBox>
                         <ReservationSearch />
                         <ContentBoxWrapper>

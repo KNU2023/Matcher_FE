@@ -6,7 +6,7 @@ import DialogboxText from "../../molecules/text/DialogboxText";
 import ButtonCreate from "../button/ButtonCreate";
 import styled from "styled-components";
 
-const JobPostCreateBox = () => {
+const ReserveCreateBox = () => {
     return (
         <>
             <DialogFormBox>
@@ -22,8 +22,10 @@ const JobPostCreateBox = () => {
                         marginBottom="22px"
                         padding="27px 27px 27px 27px"
                     />
-                    <DialogboxText content="이미지 업로딩" />
-                    <ImageInput />
+                    <DialogboxText content="날짜" />
+                    <DialogboxText content="장소" />
+                    <DialogboxText content="좌석을 생성해 주세요." />
+
                     <ButtonWrapper>
                         <ButtonCreate />
                     </ButtonWrapper>
@@ -57,4 +59,4 @@ const ButtonWrapper = styled.div`
     justify-content: flex-end;
 `;
 
-export default JobPostCreateBox;
+export default ReserveCreateBox;
