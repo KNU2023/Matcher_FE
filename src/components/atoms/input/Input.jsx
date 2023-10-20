@@ -11,12 +11,13 @@ const StyledInput = styled.input`
   background-color: ${props => props.backgroundColor || '#ffffff'};
   box-shadow: ${props => props.boxShadow || 'none'};
   padding: ${props => props.padding || '0'};
-  margin: ${props => props.margin || '0'};
+  margin-top: ${props => props.marginTop || '0'};
+  margin-bottom: ${props => props.marginBottom || '0'};
   outline: none;
 
   &:focus {
     /* 포커스가 있는 경우에만 스타일을 적용합니다. */
-    border: none; /* 경계선 없애기 */
+    border: ${props => props.border || 'none'}; /* 경계선 없애기 */
     /* 다른 스타일 속성 추가 가능 */
   }
 `;
@@ -31,7 +32,8 @@ const Input = ({
   border,
   backgroundColor,
   boxShadow,
-  margin,
+  marginTop,
+  marginBottom,
   padding,
   value,
   onChange,
@@ -49,7 +51,8 @@ const Input = ({
       backgroundColor={backgroundColor}
       boxShadow={boxShadow}
       padding={padding}
-      margin={margin}
+      marginTop={marginTop}
+      marginBottom={marginBottom}
       value={value}
       onChange={onChange}
       {...restProps}

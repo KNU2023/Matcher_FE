@@ -10,6 +10,7 @@ const StyledBox = styled.div`
   box-shadow: ${props => props.boxShadow || 'none'};
   margin: ${props => props.margin || '0'};
   padding: ${props => props.padding || '0'};
+  
 `;
 
 const Box = ({
@@ -25,20 +26,20 @@ const Box = ({
 }) => {
   return (
     <>
-    <StyledBox
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-      backgroundColor={backgroundColor}
-      border={border}
-      boxShadow={boxShadow}
-      margin={margin}
-      padding={padding}
-    >
-      {children}
-    </StyledBox>
+      <StyledBox
+        width={width}
+        height={height}
+        borderRadius={borderRadius}
+        backgroundColor={backgroundColor}
+        border={border}
+        boxShadow={boxShadow}
+        margin={margin}
+        padding={padding}
+      >
+        {children}
+      </StyledBox>
     </>
-    
+
   );
 };
 

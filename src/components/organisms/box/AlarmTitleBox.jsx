@@ -8,7 +8,7 @@ const AlarmTitleBox = () => {
         <>
             <TitleBox>
                 <TitleBoxWrapper>
-                    <TitleboxText content="알림" />
+                    <TitleboxText content="팀원 소개" />
                     <BsFillPinAngleFill size="24" color="2F9B79" />
                 </TitleBoxWrapper>
             </TitleBox>
