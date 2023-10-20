@@ -2,6 +2,8 @@ import AlarmBox from "../molecules/box/AlarmBox";
 import AlarmContentBox from "../molecules/box/AlarmContentBox";
 import AlarmTitleBox from "./box/AlarmTitleBox";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 
 const Alarm = () => {
@@ -10,7 +12,18 @@ const Alarm = () => {
             <AlarmBox>
                 <AlarmTitleBox />
                 <AlarmBoxWrapper>
-                    <AlarmContentBox />
+                    <AlarmContentBox>
+                        <FontAwesomeIcon icon={faStar} flip size="2xs" style={{ color: "#fcc783", }} />
+                        김규회 - 심컴 3학년
+                    </AlarmContentBox>
+                    <AlarmContentBox>
+                        <FontAwesomeIcon icon={faStar} flip size="2xs" style={{ color: "#fcc783", }} />
+                        심규민 - 심컴 3학년
+                    </AlarmContentBox>
+                    <AlarmContentBox>
+                        <FontAwesomeIcon icon={faStar} flip size="2xs" style={{ color: "#fcc783", }} />
+                        손홍석 - 심컴 3학년
+                    </AlarmContentBox>
                 </AlarmBoxWrapper>
             </AlarmBox>
         </Wrapper>

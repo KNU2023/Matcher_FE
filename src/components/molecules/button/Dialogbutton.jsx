@@ -1,6 +1,6 @@
 import Button from "../../atoms/button/Button";
 
-const Dialogbutton = ({ title, onClick }) => {
+const Dialogbutton = ({ title, onClick, margin }) => {
 
     const hoverStyle ={
         backgroundColor: '#03C75A',
@@ -19,6 +19,7 @@ const Dialogbutton = ({ title, onClick }) => {
             backgroundColor="white"
             boxShadow="4px 4px 2px rgba(0,0,0,0.2)"
             hoverStyle={hoverStyle}
+            margin={margin}
             onClick={onClick}
         >
             {title}

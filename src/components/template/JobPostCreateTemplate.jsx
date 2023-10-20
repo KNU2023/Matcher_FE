@@ -6,6 +6,7 @@ import styled from "styled-components";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
+import JobPostCreateBox from "../organisms/box/JobPostCreateBox";
 
 const JobPostCreateTemplate = () => {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ const JobPostCreateTemplate = () => {
                             active={location.pathname === "/jobpost/create"}
                         />
                     </TitleMainBox>
+                    <JobPostCreateBox />
                 </MainBox>
                 <ContentWrapper>
                     <Category />

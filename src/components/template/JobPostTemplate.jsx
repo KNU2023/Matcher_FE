@@ -35,7 +35,7 @@ const JobPostTemplate = () => {
                     initial="hidden"
                     animate="visible"
                     variants={variants}
-                    transition={{ ease: "easeOut", duration: 2 }} 
+                    transition={{ ease: "easeOut", duration: 2 }}
                 >
                     <MainBox>
                         <TitleMainBox>
