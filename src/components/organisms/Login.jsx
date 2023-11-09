@@ -24,7 +24,7 @@ const Login = () => {
             <KaKaoLoginBox onClick={handleLogin}>
               <LoginText>로그인 하기</LoginText>
             </KaKaoLoginBox>
-            <Smalltitle content="아직 계정이 없으신가요? 아이디 생성하러가기" onClick={handleSignUp}/>
+            <Smalltitle content="아직 계정이 없으신가요?" onClick={handleSignUp}/>
           </LoginBoxWrapper>
         </LoginBox>
       </LoginWrapper>

@@ -1,18 +1,16 @@
 import CheckSign from "../organisms/box/CheckSign";
 import ButtonSignUp from "../organisms/button/ButtonSignUp";
-import SignInForm from "../organisms/input/SignInForm";
+import SignUpForm from "../organisms/input/SignUpForm";
 import styled from "styled-components";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCheck, updateFormData } from "../../store/signUpSlice";
 import { useNavigate } from "react-router-dom";
 
 const SignUpTemplate = () => {
     const navigate = useNavigate();
-    const [isChecked, setIsChecked] = useState(false);
-    const [formData, setFormData] = useState({
-        userStudentNumber: "",
-        userMajor: "",
-        userName: "",
-    });
+    const dispatch = useDispatch();
+    const isChecked = useSelector((state) => state.signup.isChecked);
+    const formData = useSelector((state) => state.signup.formData);
 
     // Submit 버튼을 눌렀을 때 실행될 함수
     const submitHandler = () => {
@@ -30,10 +28,10 @@ const SignUpTemplate = () => {
         <>
             <Wrapper>
                 <FormWrapper>
-                    <SignInForm formData={formData} setFormData={setFormData}/>
+                    <SignUpForm formData={formData} setFormData={(data) => dispatch(updateFormData(data))} />
                 </FormWrapper>
                 <CheckWrapper>
-                    <CheckSign isChecked={isChecked} setIsChecked={setIsChecked}/>
+                    <CheckSign isChecked={isChecked} setIsChecked={() => dispatch(toggleCheck())}/>
                 </CheckWrapper>
                 <ButtonSignUp onClick={submitHandler} />
             </Wrapper>

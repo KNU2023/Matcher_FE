@@ -1,6 +1,6 @@
 import Box from "../../atoms/box/Box";
 
-const SignInFormBox = ({ children }) => {
+const SignUpFormBox = ({ children }) => {
     return(
         <>
             <Box
@@ -15,4 +15,4 @@ const SignInFormBox = ({ children }) => {
     )
 };
 
-export default SignInFormBox;
+export default SignUpFormBox;

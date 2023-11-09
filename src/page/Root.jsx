@@ -4,9 +4,10 @@ import { Outlet, useNavigation } from "react-router-dom";
 const RootLayout = () => {
     const navigation = useNavigation();
 
+ 
     return (
         <>
-            <Header />
+            <Header/>
             <main>
                 {navigation.state === 'loading' && <p>Loading...</p>}
                 <Outlet />

@@ -1,10 +1,17 @@
 import HeaderBox from "../molecules/box/HeaderBox";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const onClickHome = () => {
+        navigate("/");
+    }
+    
     return (
         <>
-            <HeaderBox>
+            <HeaderBox onClick={onClickHome}>
                 <HeaderWrapper>
                     <MainTitle>Matcher</MainTitle>
                     <SubTitle>당신의 예약과 프로젝트, 팀원을 찾는 모든 것을 이곳에</SubTitle>

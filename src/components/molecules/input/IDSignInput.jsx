@@ -1,11 +1,11 @@
 import Input from "../../atoms/input/Input";
 
-const NNSignInput = ({value, onChange}) => {
+const IDSignInput = ({value, onChange}) => {
     return (
         <>
             <Input
                 type="text"
-                placeholder="닉네임"
+                placeholder="아이디"
                 fontSize="16px"
                 height="26px"
                 width="240px"
@@ -16,4 +16,4 @@ const NNSignInput = ({value, onChange}) => {
     )
 }
 
-export default NNSignInput;
+export default IDSignInput;
