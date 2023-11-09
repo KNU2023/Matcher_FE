@@ -3,7 +3,7 @@ import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
 import Login from "../organisms/Login";
 import styled from "styled-components";
-import DialogSkeleton from "../organisms/box/DialogSkeleton";
+import DialogSkeletonReserve from "../organisms/box/DialogSkeletonReserve";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import ReservationSearch from "../organisms/input/ReservationSearch";
@@ -53,17 +53,21 @@ const ReservationTemplate = () => {
                         </TitleMainBox>
                         <ReservationSearch />
                         <ContentBoxWrapper>
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
+                            <DialogSkeletonReserve />
                         </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>

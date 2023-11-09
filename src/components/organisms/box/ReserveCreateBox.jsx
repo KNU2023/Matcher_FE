@@ -1,10 +1,10 @@
 import DialogFormBox from "../../molecules/box/DialogFormBox";
 import FormInput from "../../molecules/input/FormInput";
-import ImageInput from "../../molecules/input/ImageInput";
 import TextAreaInput from "../../molecules/input/TextAreaInput";
 import DialogboxText from "../../molecules/text/DialogboxText";
 import ButtonCreate from "../button/ButtonCreate";
 import styled from "styled-components";
+import SeatCreateButton from "../button/SeatCreateButton";
 
 const ReserveCreateBox = () => {
     return (
@@ -12,7 +12,7 @@ const ReserveCreateBox = () => {
             <DialogFormBox>
                 <BoxWrapper>
                     <DialogboxText content="제목" />
-                    <FormInput id="title" width="228px" height="5px" padding="15px" marginTop="22px" marginBottom="22px" />
+                    <FormInput id="title" type="text" />
                     <DialogboxText content="본문" />
                     <TextAreaInput
                         id="textarea"
@@ -23,9 +23,13 @@ const ReserveCreateBox = () => {
                         padding="27px 27px 27px 27px"
                     />
                     <DialogboxText content="날짜" />
+                    <FormInput id="date" type="date" />
                     <DialogboxText content="장소" />
+                    <FormInput id="title" type="text"  />
                     <DialogboxText content="좌석을 생성해 주세요." />
-
+                    <SeatWrapper>
+                        <SeatCreateButton />
+                    </SeatWrapper>
                     <ButtonWrapper>
                         <ButtonCreate />
                     </ButtonWrapper>
@@ -52,6 +56,14 @@ const BoxWrapper = styled.div`
     &::-webkit-scrollbar-track {
         background-color: #f1f1f1; /* Color of scrollbar track */
     }
+`;
+
+const SeatWrapper = styled.div`
+    width: 450px;
+    height: 450px;
+    border-radius : 15px;
+    padding: 30px;
+    background-color: #F5F6F8;
 `;
 
 const ButtonWrapper = styled.div`

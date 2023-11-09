@@ -19,6 +19,7 @@ const StyledButton = styled.button`
     box-shadow: ${props => props.hoverStyle?.boxShadow || props.boxShadow};
     color: ${props => props.hoverStyle?.color || props.color};
   }
+
 `;
 
 const Button = ({
@@ -44,6 +45,7 @@ const Button = ({
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
 
 
   return (

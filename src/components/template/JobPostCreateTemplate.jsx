@@ -1,7 +1,8 @@
 import MainBox from "../molecules/box/MainBox";
 import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
-import Login from "../organisms/Login";
+// import Login from "../organisms/Login";
+import LoginComplete from "../organisms/LoginComplete";
 import styled from "styled-components";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
@@ -38,7 +39,8 @@ const JobPostCreateTemplate = () => {
                 </MainBox>
                 <ContentWrapper>
                     <Category />
-                    <Login />
+                    {/* <Login /> */}
+                    <LoginComplete />
                     <Alarm />
                 </ContentWrapper>
             </Wrapper>

@@ -12,7 +12,7 @@ const JobPostCreateBox = () => {
             <DialogFormBox>
                 <BoxWrapper>
                     <DialogboxText content="제목" />
-                    <FormInput id="title" width="228px" height="5px" padding="15px" marginTop="22px" marginBottom="22px" />
+                    <FormInput id="title" type="text" />
                     <DialogboxText content="본문" />
                     <TextAreaInput
                         id="textarea"
