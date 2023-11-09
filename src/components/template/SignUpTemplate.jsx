@@ -1,11 +1,11 @@
 import CheckSign from "../organisms/box/CheckSign";
-import ButtonSignIn from "../organisms/button/ButtonSignIn";
+import ButtonSignUp from "../organisms/button/ButtonSignUp";
 import SignInForm from "../organisms/input/SignInForm";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignInTemplate = () => {
+const SignUpTemplate = () => {
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
     const [formData, setFormData] = useState({
@@ -32,16 +32,16 @@ const SignInTemplate = () => {
                 <FormWrapper>
                     <SignInForm formData={formData} setFormData={setFormData}/>
                 </FormWrapper>
-                <FormWrapper>
-                    <SignInForm formData={formData} setFormData={setFormData}/>
-                </FormWrapper>
-                <ButtonSignIn onClick={submitHandler} />
+                <CheckWrapper>
+                    <CheckSign isChecked={isChecked} setIsChecked={setIsChecked}/>
+                </CheckWrapper>
+                <ButtonSignUp onClick={submitHandler} />
             </Wrapper>
         </>
     )
 }
 
-export default SignInTemplate;
+export default SignUpTemplate;
 
 const Wrapper = styled.div`
     display: flex;
