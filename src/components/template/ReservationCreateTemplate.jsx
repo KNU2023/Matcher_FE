@@ -1,20 +1,19 @@
 import MainBox from "../molecules/box/MainBox";
 import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
-// import Login from "../organisms/Login";
-import LoginComplete from "../organisms/LoginComplete";
+import Login from "../organisms/Login";
 import styled from "styled-components";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
-import JobPostCreateBox from "../organisms/box/JobPostCreateBox";
+import ReserveCreateBox from "../organisms/box/ReserveCreateBox";
 
-const JobPostCreateTemplate = () => {
+const ReservationCreateTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const onClickJob = () => {
-        navigate("/jobpost");
+    const onClickReserve = () => {
+        navigate("/");
     }
 
     return (
@@ -23,24 +22,23 @@ const JobPostCreateTemplate = () => {
                 <MainBox >
                     <TitleMainBox>
                         <TitleMainBoxText
-                            content="구인구직"
-                            onClick={onClickJob}
+                            content="자리 예약"
+                            onClick={onClickReserve}
                             cursor="pointer"
-                            active={location.pathname === "/jobpost"}
+                            active={location.pathname === "/"}
                         />
                         <TitleMainBoxText
-                            content="구인구직 생성"
+                            content="예약 생성"
                             margin="0px 0px 0px 27px"
                             cursor="pointer"
-                            active={location.pathname === "/jobpost/create"}
+                            active={location.pathname === "/create"}
                         />
                     </TitleMainBox>
-                    <JobPostCreateBox />
+                    <ReserveCreateBox />
                 </MainBox>
                 <ContentWrapper>
                     <Category />
-                    {/* <Login /> */}
-                    <LoginComplete />
+                    <Login />
                     <Alarm />
                 </ContentWrapper>
             </Wrapper>
@@ -48,7 +46,7 @@ const JobPostCreateTemplate = () => {
     )
 }
 
-export default JobPostCreateTemplate;
+export default ReservationCreateTemplate;
 
 const Wrapper = styled.div`
     display: flex;

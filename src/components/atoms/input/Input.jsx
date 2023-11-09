@@ -13,6 +13,7 @@ const StyledInput = styled.input`
   padding: ${props => props.padding || '0'};
   margin-top: ${props => props.marginTop || '0'};
   margin-bottom: ${props => props.marginBottom || '0'};
+  
   outline: none;
 
   &:focus {

@@ -1,21 +1,21 @@
 import Input from "../../atoms/input/Input";
 
-const FormInput = ({ id, width, height, placeholder, color, value, onChange, marginTop, marginBottom, padding }) => {
+const FormInput = ({ id, type, placeholder, color, value, onChange }) => {
     return (
         <>
             <Input
                 id={id}
-                type="text"
-                width={width}
-                height={height}
+                type={type}
+                width="228px"
+                height="5px"
                 fontSize="14px"
                 placeholder={placeholder}
-                padding={padding}
+                padding="15px"
                 color={color}
                 borderRadius="15px"
                 border="1px solid #B2B2B2"
-                marginTop={marginTop}
-                marginBottom={marginBottom}
+                marginTop="22px"
+                marginBottom="22px"
                 value={value}
                 onChange={onChange}
             />

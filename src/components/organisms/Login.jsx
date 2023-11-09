@@ -1,6 +1,5 @@
 import LoginBox from "../molecules/box/LoginBox";
 import styled from "styled-components";
-import { ImBubble } from "react-icons/im";
 import Smalltitle from "../molecules/text/Smalltitle";
 import LoginWrapper from "../molecules/div/LoginWrapper";
 
@@ -12,8 +11,7 @@ const Login = () => {
           <LoginBoxWrapper>
             <Smalltitle content="Matcher 페이지를 찾아주셔서 감사합니다." />
             <KaKaoLoginBox>
-              <ImBubble size="18" color="#000000" />
-              <LoginText>카카오 로그인</LoginText>
+              <LoginText>로그인 하기</LoginText>
             </KaKaoLoginBox>
           </LoginBoxWrapper>
         </LoginBox>
@@ -30,7 +28,7 @@ const KaKaoLoginBox = styled.div`
   align-items: center;
   width: 186px;
   height: 19.16px;
-  background-color: #fee500;
+  background-color: #2f9b79;
   padding: 11px 100px 11px 14px;
   font-size: 13px;
   cursor: pointer;
@@ -42,4 +40,7 @@ const LoginBoxWrapper = styled.div`
 
 const LoginText = styled.span`
   margin-left: 86px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
 `;

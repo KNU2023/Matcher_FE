@@ -15,6 +15,8 @@ const IconboxReserve = () => {
     useEffect(() => {
         if (location.pathname === "/") {
             dispatch(setIsActive(true));
+        } else if (location.pathname === "/create") {
+            dispatch(setIsActive(true));
         } else {
             dispatch(setIsActive(false));
         }
