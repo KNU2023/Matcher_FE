@@ -3,7 +3,7 @@ import Signinbutton from "../../molecules/button/Signinbutton";
 const ButtonSignIn = ({onClick}) => {
     return (
         <>
-            <Signinbutton title="회원가입" onClick={onClick}/>
+            <Signinbutton title="로그인" onClick={onClick}/>
         </>
     )
 }

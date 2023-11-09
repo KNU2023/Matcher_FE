@@ -1,6 +1,6 @@
 import Text from "../../atoms/text/Text";
 
-const TitleboxText = ({ content, color, margin }) => {
+const TitleboxText = ({ content, color, margin, onClick }) => {
     return (
         <>
             <Text
@@ -12,6 +12,7 @@ const TitleboxText = ({ content, color, margin }) => {
                 justifyContent="center"
                 textAlign="center"
                 margin={margin}
+                onClick={onClick}
             >
                 {content}
             </Text>

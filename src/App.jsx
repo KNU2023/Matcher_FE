@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./page/Root";
 import ReservationPage from "./page/ReservationPage";
 import JobPostPage from "./page/JobPostPage";
-import SignInPage from "./page/SignInPage";
+import AuthPage from "./page/AuthPage";
 import MailPage from "./page/mailPage";
 import JobPosCreatetPage from "./page/JobPostCreatePage";
 import ReservationCreatePage from "./page/ReservationCreatePage";
@@ -14,7 +14,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, path: "", element: <ReservationPage /> },
       { path: "create", element: <ReservationCreatePage />},
-      { path: "signin", element: <SignInPage /> },
       {
         path: "jobpost",
         children: [
@@ -23,6 +22,7 @@ const router = createBrowserRouter([
         ]
       },
       { path: "mail", element: <MailPage /> },
+      { path: "auth", element: <AuthPage />},
     ]
   }
 ])

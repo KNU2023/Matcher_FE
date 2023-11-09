@@ -10,7 +10,7 @@ const StyledBox = styled.div`
   box-shadow: ${props => props.boxShadow || 'none'};
   margin: ${props => props.margin || '0'};
   padding: ${props => props.padding || '0'};
-  
+  cursor: ${props => props.onClick ? 'pointer' : 'default'};
 `;
 
 const Box = ({
@@ -23,6 +23,7 @@ const Box = ({
   boxShadow,
   margin,
   padding,
+  onClick
 }) => {
   return (
     <>
@@ -35,6 +36,7 @@ const Box = ({
         boxShadow={boxShadow}
         margin={margin}
         padding={padding}
+        onClick={onClick}
       >
         {children}
       </StyledBox>

@@ -2,17 +2,29 @@ import LoginBox from "../molecules/box/LoginBox";
 import styled from "styled-components";
 import Smalltitle from "../molecules/text/Smalltitle";
 import LoginWrapper from "../molecules/div/LoginWrapper";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/auth?mode=login")
+  }
+
+  const handleSignUp = () => {
+    navigate("/auth?mode=signup")
+  }
+
   return (
     <>
       <LoginWrapper>
         <LoginBox>
           <LoginBoxWrapper>
             <Smalltitle content="Matcher 페이지를 찾아주셔서 감사합니다." />
-            <KaKaoLoginBox>
+            <KaKaoLoginBox onClick={handleLogin}>
               <LoginText>로그인 하기</LoginText>
             </KaKaoLoginBox>
+            <Smalltitle content="아직 계정이 없으신가요?" onClick={handleSignUp}/>
           </LoginBoxWrapper>
         </LoginBox>
       </LoginWrapper>
