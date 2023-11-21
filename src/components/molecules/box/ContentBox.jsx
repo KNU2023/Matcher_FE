@@ -1,6 +1,6 @@
 import Box from "../../atoms/box/Box";
 
-const ContentBox = ({ children }) => {
+const ContentBox = ({ children, onClick }) => {
     return (
         <>
             <Box
@@ -10,6 +10,7 @@ const ContentBox = ({ children }) => {
                 border="2px solid #03C75A"
                 margin="0 auto"
                 padding="13px 16px 10px 17px"
+                onClick={onClick}
             >
                 {children}
             </Box>

@@ -1,10 +1,10 @@
 import SkeletonBox from "../../molecules/skeleton/SkeletonBox";
 import ContentBox from "../../molecules/box/ContentBox";
 
-const DialogSkeleton = () => {
+const DialogSkeleton = ({ openModal }) => {
   return (
     <>
-      <ContentBox>
+      <ContentBox onClick={openModal}>
         <SkeletonBox
           height="70px"
           width="70px"

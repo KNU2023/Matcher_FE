@@ -26,7 +26,7 @@ const ReserveCreateBox = () => {
                     <FormInput id="date" type="date" />
                     <DialogboxText content="장소" />
                     <FormInput id="title" type="text"  />
-                    <DialogboxText content="좌석을 생성해 주세요." />
+                    <DialogboxText content="생성하지 않을 좌석을 선택해주세요." />
                     <SeatWrapper>
                         <SeatCreateButton />
                     </SeatWrapper>

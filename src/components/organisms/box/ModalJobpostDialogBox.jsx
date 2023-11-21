@@ -3,10 +3,9 @@ import TitleboxModalSecondText from "../../molecules/text/TitleboxModalSecondTex
 import TitleboxModalText from "../../molecules/text/TitleboxModalText";
 import styled from "styled-components";
 import { IoMdCloseCircle } from "react-icons/io";
-import ButtonReservation from "../button/ButtonReservation";
-import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
+import ButtonMail from "../button/ButtonMail";
 
-const ModalReserveDialogBox = ({ closeModal }) => {
+const ModalJobpostDialogBox = ({ closeModal }) => {
     return (
         <>
             <DialogBox>
@@ -19,12 +18,9 @@ const ModalReserveDialogBox = ({ closeModal }) => {
                 <StyleLine />
                 <BoxWrapper>
                     123
-                    <SeatWrapper>
-                        <ReserveSeatBoxButton />
-                    </SeatWrapper>
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <ButtonReservation />
+                    <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>
         </>
@@ -77,4 +73,4 @@ const SeatWrapper = styled.div`
     background-color: #F5F6F8;
 `;
 
-export default ModalReserveDialogBox;
+export default ModalJobpostDialogBox;

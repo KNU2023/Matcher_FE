@@ -21,7 +21,10 @@ const router = createBrowserRouter([
           { path: "create", element: <JobPosCreatetPage /> }
         ]
       },
-      { path: "mail", element: <MailPage /> },
+      { path: "mail", children:[
+        { index: true, path: "",  element: <MailPage />},
+        { path: "write", element: <MailPage />}
+      ] },
       { path: "auth", element: <AuthPage />},
     ]
   }

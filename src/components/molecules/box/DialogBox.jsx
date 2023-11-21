@@ -1,6 +1,6 @@
 import Box from "../../atoms/box/Box";
 
-const DialogBox = ({ children }) => {
+const DialogBox = ({ children, onClick }) => {
     return (
         <>
             <Box
@@ -10,6 +10,7 @@ const DialogBox = ({ children }) => {
                 border="2px solid #03C75A"
                 margin="0 auto"
                 padding="8px 9px 23px 23px"
+                onClick={onClick}
             >
                 {children}
             </Box>
