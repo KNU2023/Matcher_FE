@@ -1,11 +1,12 @@
 import Dialogbutton from "../../molecules/button/Dialogbutton";
 import { useNavigate } from "react-router-dom";
 
-const ButtonMail = () => {
+const ButtonMailWrite = () => {
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        navigate("/mail/write");
+        alert("메시지 전송이 완료되었습니다.")
+        navigate("/mail");
     };
 
     return (
@@ -13,4 +14,4 @@ const ButtonMail = () => {
     )
 }
 
-export default ButtonMail;
+export default ButtonMailWrite;

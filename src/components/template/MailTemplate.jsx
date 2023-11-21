@@ -5,12 +5,24 @@ import Login from "../organisms/Login";
 import styled from "styled-components";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
+import MailBox from "../organisms/box/MailBox";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import ModalMailDialogBox from "../organisms/box/ModalMailDialogBox";
 
 const MailTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
 
     const onClickWrite = () => {
@@ -51,6 +63,9 @@ const MailTemplate = () => {
                                 active={location.pathname === "/mail/write"}
                             />
                         </TitleMainBox>
+                        <ContentBoxWrapper>
+                            <MailBox openModal={openModal}/>
+                        </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>
                 <ContentWrapper>
@@ -58,6 +73,11 @@ const MailTemplate = () => {
                     <Login />
                     <Alarm />
                 </ContentWrapper>
+                {isModalOpen && (
+                    <ModalWrapper>
+                        <ModalMailDialogBox closeModal={closeModal}/>
+                    </ModalWrapper>
+                )}
             </Wrapper>
         </>
     )
@@ -73,4 +93,35 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+const ContentBoxWrapper = styled.div`
+    width: 611px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+
+        width: 8px; /* Width of scrollbar */
+    height: 0px; /* Set to 0 for horizontal scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #C0C0C0; /* Scrollbar color */
+    border-radius: 4px; /* Round the corners of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of scrollbar track */
+  }
+`;
+
+const ModalWrapper = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
