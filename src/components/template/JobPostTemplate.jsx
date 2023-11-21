@@ -7,12 +7,15 @@ import Login from "../organisms/Login";
 import styled from "styled-components";
 import ReservationSearch from "../organisms/input/ReservationSearch";
 import DialogSkeleton from "../organisms/box/DialogSkeleton";
+import ModalJobpostDialogBox from "../organisms/box/ModalJobpostDialogBox";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const JobPostTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const onClickCreate = () => {
         navigate("/jobpost/create");
@@ -21,6 +24,15 @@ const JobPostTemplate = () => {
     const onClickJob = () => {
         navigate("/jobpost");
     }
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
 
     const variants = {
         visible: { opacity: 1 },
@@ -55,17 +67,7 @@ const JobPostTemplate = () => {
                         </TitleMainBox>
                         <ReservationSearch />
                         <ContentBoxWrapper>
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
-                            <DialogSkeleton />
+                            <DialogSkeleton openModal={openModal} />
                         </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>
@@ -74,6 +76,11 @@ const JobPostTemplate = () => {
                     <Login />
                     <Alarm />
                 </ContentWrapper>
+                {isModalOpen && (
+                    <ModalWrapper>
+                        <ModalJobpostDialogBox closeModal={closeModal} />
+                    </ModalWrapper>
+                )}
             </Wrapper>
         </>
     )
@@ -101,7 +108,8 @@ const ContentBoxWrapper = styled.div`
     overflow: auto;
 
     &::-webkit-scrollbar {
-    width: 8px; /* Width of scrollbar */
+
+        width: 8px; /* Width of scrollbar */
     height: 0px; /* Set to 0 for horizontal scrollbar */
   }
 
@@ -113,4 +121,11 @@ const ContentBoxWrapper = styled.div`
   &::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Color of scrollbar track */
   }
+`;
+
+const ModalWrapper = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;

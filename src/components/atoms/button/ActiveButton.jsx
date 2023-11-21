@@ -22,6 +22,7 @@ const StyledButton = styled.button`
 
   &.active {
     background-color: ${props => props.activeStyle?.backgroundColor || props.backgroundColor};
+    border: ${props => props.activeStyle?.border || props.border};
     color: ${props => props.activeStyle?.color || props.color};
   }
 `;

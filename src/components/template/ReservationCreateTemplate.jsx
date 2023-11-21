@@ -7,6 +7,8 @@ import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
 import ReserveCreateBox from "../organisms/box/ReserveCreateBox";
+// import { useDispatch, useSelector } from "react-redux";
+
 
 const ReservationCreateTemplate = () => {
     const navigate = useNavigate();

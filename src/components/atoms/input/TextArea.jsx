@@ -16,6 +16,7 @@ const StyledTextArea = styled.textarea`
   display: ${props => props.display || 'block'};
   outline: none;
   overflow: auto;
+  resize: ${props => props.reSize || 'none'};
 
   &:focus {
     /* 포커스가 있는 경우에만 스타일을 적용합니다. */
@@ -54,6 +55,7 @@ const TextArea = ({
     padding,
     value,
     onChange,
+    reSize,
     ...restProps
 }) => {
     return (
@@ -74,6 +76,7 @@ const TextArea = ({
             marginBottom={marginBottom}
             value={value}
             onChange={onChange}
+            reSize={reSize}
             {...restProps}
         />
     );

@@ -1,6 +1,6 @@
 import ActiveButton from '../../atoms/button/ActiveButton';
 
-const SeatBoxButton = ({key}) => {
+const ReserveSeatBoxButton = ({key}) => {
 
     return (
         <ActiveButton
@@ -12,8 +12,7 @@ const SeatBoxButton = ({key}) => {
             backgroundColor="#FFFFFF"
             border="2px solid #2F9B79"
             activeStyle={{
-                backgroundColor: "#C0C0C0",
-                border: "2px solid #C0C0C0"
+                backgroundColor: "#2F9B79",
             }}
         >
 
@@ -21,4 +20,4 @@ const SeatBoxButton = ({key}) => {
     )
 }
 
-export default SeatBoxButton;
+export default ReserveSeatBoxButton;

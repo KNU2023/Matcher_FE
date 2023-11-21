@@ -19,6 +19,7 @@ const FormInput = ({ id, width, height, placeholder, color, value, onChange, mar
                 marginBottom={marginBottom}
                 value={value}
                 onChange={onChange}
+                reSize="none"
             />
         </>
     )
