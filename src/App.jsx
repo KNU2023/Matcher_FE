@@ -6,6 +6,7 @@ import AuthPage from "./page/AuthPage";
 import MailPage from "./page/mailPage";
 import JobPosCreatetPage from "./page/JobPostCreatePage";
 import ReservationCreatePage from "./page/ReservationCreatePage";
+import MailWritePage from "./page/MailWritePage";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       { path: "mail", children:[
         { index: true, path: "",  element: <MailPage />},
-        { path: "write", element: <MailPage />}
+        { path: "write", element: <MailWritePage />}
       ] },
       { path: "auth", element: <AuthPage />},
     ]

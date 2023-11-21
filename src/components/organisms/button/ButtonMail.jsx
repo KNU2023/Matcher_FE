@@ -5,7 +5,7 @@ const ButtonMail = () => {
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        navigate("/mail");
+        navigate("/mail/write");
     };
 
     return (
