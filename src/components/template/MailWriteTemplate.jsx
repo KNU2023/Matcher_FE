@@ -6,6 +6,7 @@ import styled from "styled-components";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
+import MailWriteBox from "../organisms/box/MailWriteBox";
 
 const MailWriteTemplate = () => {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const MailWriteTemplate = () => {
                             active={location.pathname === "/mail/write"}
                         />
                     </TitleMainBox>
-                    
+                    <MailWriteBox />
                 </MainBox>
                 <ContentWrapper>
                     <Category />
