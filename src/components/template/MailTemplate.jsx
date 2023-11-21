@@ -3,14 +3,15 @@ import Alarm from "../organisms/Alarm";
 import Category from "../organisms/Category";
 import Login from "../organisms/Login";
 import styled from "styled-components";
-import ModalDialogBox from "../organisms/box/ModalDialogBox";
+// import ModalDialogBox from "../organisms/box/ModalDialogBox";
+import ModalReserveDialogBox from "../organisms/box/ModalReserveDialogBox";
 
 const MailTemplate = () => {
     return (
         <>
             <Wrapper>
                 <MainBox>
-                    <ModalDialogBox />
+                    <ModalReserveDialogBox />
                 </MainBox>
                 <ContentWrapper>
                     <Category />
