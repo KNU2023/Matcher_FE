@@ -5,6 +5,7 @@ import reserveCategorySlice from "./reserveCategorySlice";
 // import createSeatSlice from "./createSeatSlice";
 import signUpSlice from "./signUpSlice";
 import signInSlice from "./signInSlice";
+import authSlice from "./authSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
         reserveCategory: reserveCategorySlice.reducer,
         signup: signUpSlice.reducer,
         signin: signInSlice.reducer,
+        auth: authSlice.reducer,
         // createSeat : createSeatSlice.reducer,
     }
 })

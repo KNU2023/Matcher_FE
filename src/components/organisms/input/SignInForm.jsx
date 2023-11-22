@@ -4,16 +4,19 @@ import styled from "styled-components";
 import IDFormBox from "../../molecules/box/IDFormBox";
 import IDSignInput from "../../molecules/input/IDSignInput";
 import PWSignInput from "../../molecules/input/PWSignInput";
+import ButtonSignIn from "../button/ButtonSignIn";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = ({ formData, setFormData }) => {
-
+    const navigate = useNavigate();
 
     const IDchange = (e) => {
         setFormData({
             ...formData,
             email: e.target.value,
         });
-        //console.log(e.target.value);
+        // console.log(e.target.value);
     }
 
     const PWchange = (e) => {
@@ -21,8 +24,30 @@ const SignInForm = ({ formData, setFormData }) => {
             ...formData,
             password: e.target.value,
         });
-        //console.log(e.target.value);
+        // console.log(e.target.value);
     }
+
+    const submitHandler = async() => {
+        // formData에 저장된 값 출력
+        try {
+            const email = formData.email;
+            const password = formData.password;
+            const response = await axios.get(`http://localhost:8080/login?id=${email}&pw=${password}`);
+
+            const accessToken = response.data.accessToken;
+            const refreshToken = response.data.refreshToken;
+
+            // 로그인 성공 시 토큰을 저장하고 홈으로 이동
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+            alert("로그인 성공!")
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error('Login failed:', error.message);
+        }
+
+    };
 
     return (
         <>
@@ -53,7 +78,7 @@ const SignInForm = ({ formData, setFormData }) => {
                     </Wrapper>
                 </IDFormBox>
             </PWFormWrapper>
-
+            <ButtonSignIn onClick={submitHandler} />
         </>
     )
 }

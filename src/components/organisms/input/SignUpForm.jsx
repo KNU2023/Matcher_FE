@@ -14,8 +14,16 @@ import MJSignInput from "../../molecules/input/MJSignInput";
 import IDFormBox from "../../molecules/box/IDFormBox";
 import IDSignInput from "../../molecules/input/IDSignInput";
 import PWSignInput from "../../molecules/input/PWSignInput";
+import ButtonSignUp from "../button/ButtonSignUp";
+import CheckSign from "../box/CheckSign.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import {toggleCheck} from "../../../store/signUpSlice.jsx";
+
+
 
 const SignUpForm = ({ formData, setFormData }) => {
+    const dispatch = useDispatch();
+    const isChecked = useSelector((state) => state.signup.isChecked);
 
     const handleStudentNumberChange = (e) => {
         setFormData({
@@ -56,6 +64,18 @@ const SignUpForm = ({ formData, setFormData }) => {
         });
         //console.log(e.target.value);
     }
+
+    const submitHandler = () => {
+        // formData에 저장된 값 출력
+        console.log(formData);
+        if (isChecked) {
+            alert("회원가입이 완료되었습니다.");
+            // console.log(formData)
+            // navigate("/");
+        } else {
+            alert("개인정보 처리 방침에 동의해야 합니다.");
+        }
+    };
 
     return (
         <>
@@ -122,11 +142,19 @@ const SignUpForm = ({ formData, setFormData }) => {
                     </Wrapper>
                 </NNSignUpFormBox>
             </SignUpFormBox>
+            <CheckWrapper>
+                <CheckSign isChecked={isChecked} setIsChecked={() => dispatch(toggleCheck())}/>
+            </CheckWrapper>
+            <ButtonSignUp onClick={submitHandler} />
         </>
     )
 }
 
 export default SignUpForm;
+
+const CheckWrapper = styled.div`
+    margin: 77px 0px 77px 0px;
+`;
 
 const Wrapper = styled.div`
     display: flex;
