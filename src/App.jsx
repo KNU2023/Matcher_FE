@@ -7,6 +7,9 @@ import MailPage from "./page/mailPage";
 import JobPosCreatetPage from "./page/JobPostCreatePage";
 import ReservationCreatePage from "./page/ReservationCreatePage";
 import MailWritePage from "./page/MailWritePage";
+import MyPage from "./page/MyPage";
+import MyPageReservation from "./page/MyPageReservation";
+import MyPageJobPost from "./page/MyPageJobPost";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, path: "", element: <ReservationPage /> },
-      { path: "create", element: <ReservationCreatePage />},
+      { path: "create", element: <ReservationCreatePage /> },
       {
         path: "jobpost",
         children: [
@@ -22,11 +25,22 @@ const router = createBrowserRouter([
           { path: "create", element: <JobPosCreatetPage /> }
         ]
       },
-      { path: "mail", children:[
-        { index: true, path: "",  element: <MailPage />},
-        { path: "write", element: <MailWritePage />}
-      ] },
-      { path: "auth", element: <AuthPage />},
+      {
+        path: "mail",
+        children: [
+          { index: true, path: "", element: <MailPage /> },
+          { path: "write", element: <MailWritePage /> }
+        ]
+      },
+      { path: "auth", element: <AuthPage /> },
+      {
+        path: "mypage",
+        children: [
+          { index: true, path: "", element: <MyPage />},
+          { path: "reservation", element: <MyPageReservation />},
+          { path: "jobpost", element: <MyPageJobPost />}
+        ]
+      }
     ]
   }
 ])

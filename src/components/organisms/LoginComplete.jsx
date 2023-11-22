@@ -7,8 +7,15 @@ import Img from "../atoms/img/Img";
 import ButtonLogout from "./button/ButtonLogout";
 import Smalltitle from "../molecules/text/Smalltitle";
 import LogoutTitle from "../molecules/text/LogoutTitle";
+import { useNavigate } from "react-router-dom";
 
 const LoginComplete = () => {
+  const navigate = useNavigate();
+
+  const onClickMypage = () => {
+    navigate("/mypage");
+  };
+
   return (
     <>
       <LoginWrapper>
@@ -30,7 +37,7 @@ const LoginComplete = () => {
               />
             </ContentBox>
           </SectionBox>
-          <MypageButton>마이페이지</MypageButton>
+          <MypageButton onClick={onClickMypage}>마이페이지</MypageButton>
         </LoginBox>
       </LoginWrapper>
     </>
