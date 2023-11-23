@@ -11,11 +11,15 @@ import ModalJobpostDialogBox from "../organisms/box/ModalJobpostDialogBox";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "../../store/authSlice";
+import LoginComplete from "../organisms/LoginComplete";
 
 const JobPostTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isModalOpen, setModalOpen] = useState(false);
+     const accessToken = useSelector(selectAccessToken);
 
     const onClickCreate = () => {
         navigate("/jobpost/create");
@@ -73,7 +77,7 @@ const JobPostTemplate = () => {
                 </motion.div>
                 <ContentWrapper>
                     <Category />
-                    <Login />
+                    {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
                 {isModalOpen && (

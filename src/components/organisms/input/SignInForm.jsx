@@ -8,6 +8,7 @@ import ButtonSignIn from "../button/ButtonSignIn";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const SignInForm = ({ formData, setFormData }) => {
     const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const SignInForm = ({ formData, setFormData }) => {
         try {
             const email = formData.email;
             const password = formData.password;
-            const response = await axios.get(`http://localhost:8080/login?id=${email}&pw=${password}`);
+            const response = await axios.get(`/api/login?id=${email}&pw=${password}`);
 
             const accessToken = response.data.accessToken;
             const refreshToken = response.data.refreshToken;

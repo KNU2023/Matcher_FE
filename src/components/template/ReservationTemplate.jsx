@@ -11,7 +11,7 @@ import ModalReserveDialogBox from "../organisms/box/ModalReserveDialogBox";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux"; // import useSelector 추가
+import { useSelector } from "react-redux";
 import { selectAccessToken } from "../../store/authSlice";
 import LoginComplete from "../organisms/LoginComplete";
 // import { useDispatch, useSelector } from "react-redux";

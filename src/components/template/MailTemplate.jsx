@@ -10,11 +10,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ModalMailDialogBox from "../organisms/box/ModalMailDialogBox";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "../../store/authSlice";
+import LoginComplete from "../organisms/LoginComplete";
 
 const MailTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isModalOpen, setModalOpen] = useState(false);
+    const accessToken = useSelector(selectAccessToken);
 
     const openModal = () => {
         setModalOpen(true);
@@ -70,7 +74,7 @@ const MailTemplate = () => {
                 </motion.div>
                 <ContentWrapper>
                     <Category />
-                    <Login />
+                    {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
                 {isModalOpen && (
