@@ -38,7 +38,7 @@ const LoginComplete = () => {
         setUserData(response.data);
         setUserName(response.data.name);
         setUserEmail(response.data.email);
-        console.log(userData);
+        //console.log(userData);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }

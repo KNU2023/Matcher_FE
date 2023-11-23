@@ -10,39 +10,64 @@ import DialogSkeleton from "../organisms/box/DialogSkeleton";
 import ModalJobpostDialogBox from "../organisms/box/ModalJobpostDialogBox";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectAccessToken } from "../../store/authSlice";
 import LoginComplete from "../organisms/LoginComplete";
+import { MdOutlineReadMore } from "react-icons/md";
+import axios from "axios";
+import TitleboxModalSecondText from "../molecules/text/TitleboxModalSecondText";
 
 const JobPostTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isModalOpen, setModalOpen] = useState(false);
-     const accessToken = useSelector(selectAccessToken);
+    const [userData, setUserData] = useState([]);
+    const [pageNum, setPageNum] = useState(0); // Initialize pageNum to 0 for the first page
+    const accessToken = useSelector(selectAccessToken);
 
     const onClickCreate = () => {
         navigate("/jobpost/create");
-    }
+    };
 
     const onClickJob = () => {
         navigate("/jobpost");
-    }
+    };
 
     const openModal = () => {
         setModalOpen(true);
-    }
+    };
 
     const closeModal = () => {
         setModalOpen(false);
-    }
-
+    };
 
     const variants = {
         visible: { opacity: 1 },
         hidden: { opacity: 0 },
-    }
+    };
 
+    const fetchUserData = async (page) => {
+        try {
+            const response = await axios.get(`/api/jobpost?page=${page}`, {
+                headers: {
+                    Authorization: accessToken,
+                },
+            });
+
+            setUserData((prevData) => [...prevData, ...response.data.data]);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData(pageNum);
+    }, [pageNum, accessToken]);
+
+    const handleLoadMore = () => {
+        setPageNum((prevPageNum) => prevPageNum + 1);
+    };
 
     return (
         <>
@@ -71,7 +96,23 @@ const JobPostTemplate = () => {
                         </TitleMainBox>
                         <ReservationSearch />
                         <ContentBoxWrapper>
-                            <DialogSkeleton openModal={openModal} />
+                            {userData.length > 0 ? (
+                                userData.map((item) => (
+                                    <DialogSkeleton
+                                        key={item.id}
+                                        data={item}
+                                        openModal={openModal}
+                                    />
+                                ))
+                            ) : (
+                                <p>No data available</p>
+                            )}
+                            {userData.length > 0 ? (
+                                <ReLoad>
+                                    <MdOutlineReadMore size="30" color="#03C75A" cursor="pointer" onClick={handleLoadMore} />
+                                    <TitleboxModalSecondText content="Click And Get More Post!"/>
+                                </ReLoad>
+                            ) : (null)}
                         </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>
@@ -87,49 +128,58 @@ const JobPostTemplate = () => {
                 )}
             </Wrapper>
         </>
-    )
-}
+    );
+};
 
 export default JobPostTemplate;
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 `;
 
 const ContentWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ContentBoxWrapper = styled.div`
-    height: 483px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    margin-top: 39px;
-    row-gap: 15px;
-    overflow: auto;
+  height: 483px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin-top: 39px;
+  row-gap: 15px;
+  overflow: auto;
 
-    &::-webkit-scrollbar {
-
-        width: 8px; /* Width of scrollbar */
-    height: 0px; /* Set to 0 for horizontal scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 0px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #C0C0C0; /* Scrollbar color */
-    border-radius: 4px; /* Round the corners of the scrollbar */
+    background-color: #c0c0c0;
+    border-radius: 4px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Color of scrollbar track */
+    background-color: #f1f1f1;
   }
 `;
 
 const ModalWrapper = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const ReLoad = styled.div`
+    width:146px;
+    height:124px;
+    padding: 13px 16px 10px 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;

@@ -3,7 +3,6 @@ import FormInput from "../../molecules/input/FormInput";
 import TextAreaInput from "../../molecules/input/TextAreaInput";
 import DialogboxText from "../../molecules/text/DialogboxText";
 import styled from "styled-components";
-import SeatCreateButton from "../button/SeatCreateButton";
 import ButtonMailWrite from "../button/ButtonMailWrite";
 
 const MailWriteBox = () => {
@@ -11,7 +10,7 @@ const MailWriteBox = () => {
         <>
             <DialogFormBox>
                 <BoxWrapper>
-                    <DialogboxText content="제목" />
+                    <DialogboxText content="보낼 이" />
                     <FormInput id="title" type="text" />
                     <DialogboxText content="본문" />
                     <TextAreaInput
