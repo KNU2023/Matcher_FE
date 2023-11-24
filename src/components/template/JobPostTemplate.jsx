@@ -56,6 +56,7 @@ const JobPostTemplate = () => {
             });
 
             setUserData((prevData) => [...prevData, ...response.data.data]);
+            //console.log(response)
         } catch (error) {
             console.error('Error fetching user data:', error);
         }
@@ -68,7 +69,7 @@ const JobPostTemplate = () => {
     const handleLoadMore = () => {
         setPageNum((prevPageNum) => prevPageNum + 1);
     };
-
+    //console.log("userData", userData)
     return (
         <>
             <Wrapper>
@@ -101,16 +102,18 @@ const JobPostTemplate = () => {
                                     <DialogSkeleton
                                         key={item.id}
                                         data={item}
+                                        isModalOpen={isModalOpen}
                                         openModal={openModal}
+                                        closeModal={closeModal}
                                     />
                                 ))
                             ) : (
-                                <p>No data available</p>
+                                null
                             )}
                             {userData.length > 0 ? (
                                 <ReLoad>
                                     <MdOutlineReadMore size="30" color="#03C75A" cursor="pointer" onClick={handleLoadMore} />
-                                    <TitleboxModalSecondText content="Click And Get More Post!"/>
+                                    <TitleboxModalSecondText content="Click And Get More Post!" />
                                 </ReLoad>
                             ) : (null)}
                         </ContentBoxWrapper>
@@ -121,11 +124,6 @@ const JobPostTemplate = () => {
                     {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
-                {isModalOpen && (
-                    <ModalWrapper>
-                        <ModalJobpostDialogBox closeModal={closeModal} />
-                    </ModalWrapper>
-                )}
             </Wrapper>
         </>
     );
@@ -167,12 +165,7 @@ const ContentBoxWrapper = styled.div`
   }
 `;
 
-const ModalWrapper = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
+
 
 const ReLoad = styled.div`
     width:146px;

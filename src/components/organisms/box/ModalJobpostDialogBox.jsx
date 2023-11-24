@@ -4,22 +4,78 @@ import TitleboxModalText from "../../molecules/text/TitleboxModalText";
 import styled from "styled-components";
 import { IoMdCloseCircle } from "react-icons/io";
 import ButtonMail from "../button/ButtonMail";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ButtonComment from "../button/ButtonComment";
+import CommentInput from "../../molecules/input/CommentInput";
+import CommentContentBox from "./CommentContentBox";
 
-const ModalJobpostDialogBox = ({ closeModal }) => {
+const ModalJobpostDialogBox = ({ id, closeModaled, openModal }) => {
+    const [userData, setUserData] = useState([]);
+    const [userTitle, setuserTitle] = useState(null);
+    const [userName, setuserName] = useState(null);
+    const [userDate, setuserDate] = useState(null);
+    const [userContent, setuserContent] = useState(null);
+
+    // console.log("hello",data)
+    // console.log("id값", data.id);
+    //console.log("id값", id);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                // const jobpostId = data.id;
+
+                //console.log(accessToken);
+                // 데이터를 가져오는 API 호출
+                const response = await axios.get(`/api/jobpost/${id}`, {
+                    headers: {
+                        'Authorization': accessToken,
+                    },
+                });
+
+                // 가져온 데이터를 state에 저장
+                //console.log("jobPost결과값: ", response.data);
+                setuserTitle(response.data.title);
+                setuserName(response.data.author.name);
+                setuserDate(response.data.date);
+                setuserContent(response.data.content);
+                setUserData(response.data.commentList);
+                //console.log("commentList", response.data.commentList);
+                //console.log(userData);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+        fetchUserData();
+    }, [openModal]);
+
+
     return (
         <>
             <DialogBox>
                 <Xbox>
-                    <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModal} />
+                    <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModaled} />
                 </Xbox>
-                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content="종프 팀원 한분 찾습니다." />
-                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content="컴학3학년" />
-                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content="2023.11.02" />
+                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={userTitle} />
+                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={userName} />
+                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={userDate} />
                 <StyleLine />
                 <BoxWrapper>
-                    123
+                    <ContentWrapper>
+                        {userContent}
+                    </ContentWrapper>
+                    {userData.map((comment) => (
+                        <CommentContentBox
+                            key={comment.id}
+                            item={comment}
+                        />
+                    ))}
                 </BoxWrapper>
                 <ButtonWrapper>
+                    <CommentInput type="text" placeholder="댓글을 입력해주세요." />
+                    <ButtonComment />
                     <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>
@@ -60,17 +116,24 @@ const BoxWrapper = styled.div`
     }
 `;
 
+const ContentWrapper = styled.div`
+    width: 539px;
+    height: 260px;
+`;
+
+const CommentWrapper = styled.div`
+    width: 539px;
+    height: 64px;
+    border-top: 1px solid #E7E8EB;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`;
+
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
 
-const SeatWrapper = styled.div`
-    width: 450px;
-    height: 450px;
-    border-radius : 15px;
-    padding: 30px;
-    background-color: #F5F6F8;
-`;
 
 export default ModalJobpostDialogBox;
