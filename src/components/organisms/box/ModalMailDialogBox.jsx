@@ -5,19 +5,24 @@ import styled from "styled-components";
 import ButtonMail from "../button/ButtonMail";
 import { IoMdCloseCircle } from "react-icons/io";
 
-const ModalMailDialogBox = ({ closeModal }) => {
+const ModalMailDialogBox = ({ content, senderEmail, date, receiverEmail, closeModal }) => {
+    // console.log("content", content);
+    // console.log("receiverEmail", receiverEmail);
+    // console.log("senderEmail", senderEmail);
+    // console.log("date", date);
+
     return (
         <>
             <DialogBox>
                 <Xbox>
                     <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModal} />
                 </Xbox>
-                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content="종프 팀원 한분 찾습니다." />
-                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content="컴학3학년" />
-                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content="2023.11.02" />
+                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={`발신자: ${senderEmail}`}  />
+                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={`송신자: ${receiverEmail}`} />
+                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={date} />
                 <StyleLine />
                 <BoxWrapper>
-                    예약 보고 문의드립니다. 혹시 같이하실 생각없으시나요?
+                    {content}
                 </BoxWrapper>
                 <ButtonWrapper>
                     <ButtonMail />

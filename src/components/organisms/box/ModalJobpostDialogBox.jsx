@@ -20,15 +20,14 @@ const ModalJobpostDialogBox = ({ id, closeModaled, openModal }) => {
     // console.log("hello",data)
     // console.log("id값", data.id);
     //console.log("id값", id);
+   
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const accessToken = localStorage.getItem("accessToken");
                 // const jobpostId = data.id;
-
                 //console.log(accessToken);
-                // 데이터를 가져오는 API 호출
                 const response = await axios.get(`/api/jobpost/${id}`, {
                     headers: {
                         'Authorization': accessToken,
@@ -41,15 +40,40 @@ const ModalJobpostDialogBox = ({ id, closeModaled, openModal }) => {
                 setuserName(response.data.author.name);
                 setuserDate(response.data.date);
                 setuserContent(response.data.content);
-                setUserData(response.data.commentList);
-                //console.log("commentList", response.data.commentList);
-                //console.log(userData);
+                setUserData([response.data.commentList]);
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         };
         fetchUserData();
     }, [openModal]);
+    console.log(userData);
+
+    // 댓글
+    const [comment, setComment] = useState('');
+    const CommentChange = (e) => {
+        setComment(e.target.value);
+    }
+    //console.log(comment);
+
+    const onClickComment = async () => {
+
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+            // const jobpostId = data.id;
+
+            //console.log(accessToken);
+            const response = await axios.post(`/api/jobpost/${id}/comment`, { jopPostId: id, content: comment }, {
+                headers: {
+                    'Authorization': accessToken,
+                },
+            });
+
+            console.log(response);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
 
 
     return (
@@ -69,13 +93,13 @@ const ModalJobpostDialogBox = ({ id, closeModaled, openModal }) => {
                     {userData.map((comment) => (
                         <CommentContentBox
                             key={comment.id}
-                            item={comment}
+                            commentItem={comment}
                         />
                     ))}
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <CommentInput type="text" placeholder="댓글을 입력해주세요." />
-                    <ButtonComment />
+                    <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={CommentChange} />
+                    <ButtonComment onClick={onClickComment} />
                     <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>

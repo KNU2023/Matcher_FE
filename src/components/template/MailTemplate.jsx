@@ -9,7 +9,6 @@ import MailBox from "../organisms/box/MailBox";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import ModalMailDialogBox from "../organisms/box/ModalMailDialogBox";
 import { useSelector } from "react-redux";
 import { selectAccessToken } from "../../store/authSlice";
 import LoginComplete from "../organisms/LoginComplete";
@@ -18,18 +17,9 @@ import axios from "axios";
 const MailTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [isModalOpen, setModalOpen] = useState(false);
     const [userData, setUserData] = useState([]);
     const accessToken = useSelector(selectAccessToken);
-
-    const openModal = () => {
-        setModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-
+  
 
     const onClickWrite = () => {
         navigate("/mail/write");
@@ -57,7 +47,7 @@ const MailTemplate = () => {
                 });
 
                 // 가져온 데이터를 state에 저장
-                console.log(response.data);
+                //console.log(response.data);
                 setUserData(response.data);
                 //console.log(userData);
             } catch (error) {
@@ -99,8 +89,8 @@ const MailTemplate = () => {
                                 userData.map((item) => (
                                     <MailBox
                                         key={item.id}
+                                        id={item.id}
                                         data={item}
-                                        openModal={openModal}
                                     />
                                 ))
                             ) : (
@@ -114,11 +104,6 @@ const MailTemplate = () => {
                     {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
-                {isModalOpen && (
-                    <ModalWrapper>
-                        <ModalMailDialogBox closeModal={closeModal} />
-                    </ModalWrapper>
-                )}
             </Wrapper>
         </>
     )
@@ -160,9 +145,3 @@ const ContentBoxWrapper = styled.div`
   }
 `;
 
-const ModalWrapper = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;

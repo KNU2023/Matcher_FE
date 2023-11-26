@@ -5,7 +5,10 @@ import DialogboxText from "../../molecules/text/DialogboxText";
 import styled from "styled-components";
 import ButtonMailWrite from "../button/ButtonMailWrite";
 
+
 const MailWriteBox = () => {
+ 
+
     return (
         <>
             <DialogFormBox>
@@ -20,9 +23,10 @@ const MailWriteBox = () => {
                         marginTop="22px"
                         marginBottom="22px"
                         padding="27px 27px 27px 27px"
+                        
                     />
                     <ButtonWrapper>
-                        <ButtonMailWrite />
+                        <ButtonMailWrite/>
                     </ButtonWrapper>
                 </BoxWrapper>
             </DialogFormBox>

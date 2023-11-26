@@ -5,8 +5,9 @@ import styled from "styled-components";
 import ModalJobpostDialogBox from "./ModalJobpostDialogBox";
 
 const DialogSkeleton = ({ data, openModal, closeModal, isModalOpen }) => {
+  //console.log("jobPostId", jobPostId);\
   const jobPostId = data.id;
-  //console.log("jobPostId", jobPostId);
+  // console.log("data", data);
 
   return (
     <>
@@ -27,7 +28,7 @@ const DialogSkeleton = ({ data, openModal, closeModal, isModalOpen }) => {
           <ModalJobpostDialogBox
             openModal={openModal}
             closeModaled={closeModal}
-            id={data.id}
+            id={jobPostId}
           />
         </ModalWrapper>
       )}
