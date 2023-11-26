@@ -18,7 +18,7 @@ const LoginComplete = () => {
     navigate("/mypage");
   };
 
-  const [userData, setUserData] = useState(null);
+
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
 
@@ -35,7 +35,6 @@ const LoginComplete = () => {
         });
 
         // 가져온 데이터를 state에 저장
-        setUserData(response.data);
         setUserName(response.data.name);
         setUserEmail(response.data.email);
         //console.log(userData);
@@ -75,6 +74,8 @@ const LoginComplete = () => {
     </>
   );
 };
+
+export const { userData } = LoginComplete;
 
 export default LoginComplete;
 

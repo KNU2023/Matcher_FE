@@ -4,42 +4,61 @@ import TitleboxModalText from "../../molecules/text/TitleboxModalText";
 import styled from "styled-components";
 import { IoMdCloseCircle } from "react-icons/io";
 import ButtonMail from "../button/ButtonMail";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ButtonComment from "../button/ButtonComment";
 import CommentInput from "../../molecules/input/CommentInput";
 import CommentContentBox from "./CommentContentBox";
 
 const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, commentList }) => {
-    // console.log(commentList);
+    console.log(commentList);
 
+    const [contents, setContents] = useState('');
+    const [jobPostCommentList, setJobPostCommentList] = useState(commentList);
 
-    // 댓글
-    // const [comment, setComment] = useState('');
-    // const CommentChange = (e) => {
-    //     setComment(e.target.value);
-    // }
-    // //console.log(comment);
+    const fetchJobPostComments = async () => {
+        try {
+          const accessToken = localStorage.getItem("accessToken");
+          const response = await axios.get(`/api/jobpost/${id}`, {
+            headers: {
+              'Authorization': accessToken,
+            },
+          });
+          
+          console.log("재응답후", response.data.commentList);
+          setJobPostCommentList(response.data.commentList);
+        } catch (error) {
+          console.error('Error fetching job post comments:', error);
+        }
+      };
+    
+    //   useEffect(() => {
+    //     // 컴포넌트가 마운트된 후에 초기 데이터를 가져오도록 useEffect 사용
+    //     fetchJobPostComments();
+    //   }, []); 
 
-    // const onClickComment = async () => {
+    const onClickComment = async () => {
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+            const commentData = {
+                content: contents,
+            };
 
-    //     try {
-    //         const accessToken = localStorage.getItem("accessToken");
-    //         // const jobpostId = data.id;
+            const response = await axios.post(`/api/jobpost/${id}/comment`, commentData, {
+                headers: {
+                    'Authorization': accessToken,
+                },
+            });
 
-    //         //console.log(accessToken);
-    //         const response = await axios.post(`/api/jobpost/${id}/comment`, {"jobPostId" : 1, "content" : "댓글" }, {
-    //             headers: {
-    //                 'Authorization': accessToken,
-    //             },
-    //         });
+            console.log(response);
+            alert("댓글 작성완료!");
 
-    //         console.log(response);
-    //         alert("댓글 작성완료!");
-    //     } catch (error) {
-    //         console.error('Error fetching user data:', error);
-    //     }
-    // };
+            // 댓글 추가 후 최신 데이터를 서버에서 다시 받아옴
+            await fetchJobPostComments();
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
 
     return (
         <>
@@ -55,6 +74,7 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
                     <ContentWrapper>
                         {content}
                     </ContentWrapper>
+                    { console.log("jobPostCommentList", jobPostCommentList)}
                     {commentList.map((comment) => (
                         <CommentContentBox
                             key={comment.id}
@@ -67,8 +87,8 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
                     ))}
                 </BoxWrapper>
                 <ButtonWrapper>
-                    {/* <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={CommentChange} />
-                    <ButtonComment onClick={onClickComment} /> */}
+                    <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={(e) => setContents(e.target.value)} />
+                    <ButtonComment onClick={onClickComment} />
                     <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>

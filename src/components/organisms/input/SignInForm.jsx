@@ -6,11 +6,8 @@ import IDSignInput from "../../molecules/input/IDSignInput";
 import PWSignInput from "../../molecules/input/PWSignInput";
 import ButtonSignIn from "../button/ButtonSignIn";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 
 const SignInForm = ({ formData, setFormData }) => {
-    const navigate = useNavigate();
 
     const IDchange = (e) => {
         setFormData({
@@ -28,7 +25,7 @@ const SignInForm = ({ formData, setFormData }) => {
         // console.log(e.target.value);
     }
 
-    const submitHandler = async() => {
+    const submitHandler = async () => {
         // formData에 저장된 값 출력
         try {
             const email = formData.email;
@@ -42,8 +39,7 @@ const SignInForm = ({ formData, setFormData }) => {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             alert("로그인 성공!")
-            navigate('/');
-            window.location.reload();
+            window.location.replace("/")
         } catch (error) {
             console.error('Login failed:', error.message);
         }
