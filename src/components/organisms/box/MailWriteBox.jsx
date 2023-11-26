@@ -4,17 +4,56 @@ import TextAreaInput from "../../molecules/input/TextAreaInput";
 import DialogboxText from "../../molecules/text/DialogboxText";
 import styled from "styled-components";
 import ButtonMailWrite from "../button/ButtonMailWrite";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 const MailWriteBox = () => {
- 
+    const [receiverEmail, setReceiverEmail] = useState('');
+    const [content, setContent] = useState('');
+    const navigate = useNavigate();
+    
+
+    const handleButtonClick = async () => {
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+            // 요청에 필요한 데이터를 객체로 생성
+            const messageData = {
+                receiverEmail: receiverEmail,
+                content: content,
+            };
+
+            // 서버로 POST 요청 보내기
+            const response = await axios.post('/api/message', messageData, {
+                headers: {
+                    'Authorization': accessToken,
+                },
+            });
+
+            // 응답 확인
+            console.log(response.data);
+
+            // 성공적으로 전송되었을 때 알림 등 추가 동작 수행
+            alert('메시지 전송이 완료되었습니다.');
+            navigate("/mail");
+        } catch (error) {
+            // 오류가 발생했을 때 처리
+            console.error('Error sending message:', error);
+            alert('메시지 전송 중 오류가 발생했습니다.');
+        }
+    };
 
     return (
         <>
             <DialogFormBox>
                 <BoxWrapper>
                     <DialogboxText content="보낼 이" />
-                    <FormInput id="title" type="text" />
+                    <FormInput
+                        id="title"
+                        type="text"
+                        onChange={(e) => setReceiverEmail(e.target.value)}
+                    />
                     <DialogboxText content="본문" />
                     <TextAreaInput
                         id="textarea"
@@ -23,10 +62,10 @@ const MailWriteBox = () => {
                         marginTop="22px"
                         marginBottom="22px"
                         padding="27px 27px 27px 27px"
-                        
+                        onChange={(e) => setContent(e.target.value)}
                     />
                     <ButtonWrapper>
-                        <ButtonMailWrite/>
+                        <ButtonMailWrite onClick={handleButtonClick} />
                     </ButtonWrapper>
                 </BoxWrapper>
             </DialogFormBox>

@@ -11,12 +11,8 @@ import CommentInput from "../../molecules/input/CommentInput";
 import CommentContentBox from "./CommentContentBox";
 
 const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, commentList }) => {
-    //console.log(commentList.map(item => console.log("item", item.id)));
-    // const comments = commentList;
+    // console.log(commentList);
 
-    // console.log("hello",data)
-    // console.log("id값", data.id);
-    //console.log("id값", id);
 
     // 댓글
     // const [comment, setComment] = useState('');
@@ -32,13 +28,14 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
     //         // const jobpostId = data.id;
 
     //         //console.log(accessToken);
-    //         const response = await axios.post(`/api/jobpost/${id}/comment`, { id: id, content: comment }, {
+    //         const response = await axios.post(`/api/jobpost/${id}/comment`, {"jobPostId" : 1, "content" : "댓글" }, {
     //             headers: {
     //                 'Authorization': accessToken,
     //             },
     //         });
 
     //         console.log(response);
+    //         alert("댓글 작성완료!");
     //     } catch (error) {
     //         console.error('Error fetching user data:', error);
     //     }
@@ -70,8 +67,8 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
                     ))}
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={CommentChange} />
-                    <ButtonComment onClick={onClickComment} />
+                    {/* <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={CommentChange} />
+                    <ButtonComment onClick={onClickComment} /> */}
                     <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>

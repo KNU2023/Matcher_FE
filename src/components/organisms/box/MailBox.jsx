@@ -48,8 +48,8 @@ const MailBox = ({ data }) => {
         <>
             <MailBoxWrapper onClick={openModal}>
                 <IoChatbubbleEllipses size="24" color="#2F9B79" />
-                <Smalltitle weight="bold" content={data.userName}  />
-                <Smalltitle content={data.userEmail}  />
+                <Smalltitle weight="bold" content={data.userName} key={data.id} />
+                <Smalltitle content={data.userEmail} key={data.id} />
             </MailBoxWrapper>
             
             {isModalOpen && (
