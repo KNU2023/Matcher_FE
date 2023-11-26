@@ -10,90 +10,62 @@ import ButtonComment from "../button/ButtonComment";
 import CommentInput from "../../molecules/input/CommentInput";
 import CommentContentBox from "./CommentContentBox";
 
-const ModalJobpostDialogBox = ({ id, closeModaled, openModal }) => {
-    const [userData, setUserData] = useState([]);
-    const [userTitle, setuserTitle] = useState(null);
-    const [userName, setuserName] = useState(null);
-    const [userDate, setuserDate] = useState(null);
-    const [userContent, setuserContent] = useState(null);
+const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, commentList }) => {
+    //console.log(commentList.map(item => console.log("item", item.id)));
+    // const comments = commentList;
 
     // console.log("hello",data)
     // console.log("id값", data.id);
     //console.log("id값", id);
-   
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const accessToken = localStorage.getItem("accessToken");
-                // const jobpostId = data.id;
-                //console.log(accessToken);
-                const response = await axios.get(`/api/jobpost/${id}`, {
-                    headers: {
-                        'Authorization': accessToken,
-                    },
-                });
-
-                // 가져온 데이터를 state에 저장
-                //console.log("jobPost결과값: ", response.data);
-                setuserTitle(response.data.title);
-                setuserName(response.data.author.name);
-                setuserDate(response.data.date);
-                setuserContent(response.data.content);
-                setUserData([response.data.commentList]);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-        fetchUserData();
-    }, [openModal]);
-    console.log(userData);
 
     // 댓글
-    const [comment, setComment] = useState('');
-    const CommentChange = (e) => {
-        setComment(e.target.value);
-    }
-    //console.log(comment);
+    // const [comment, setComment] = useState('');
+    // const CommentChange = (e) => {
+    //     setComment(e.target.value);
+    // }
+    // //console.log(comment);
 
-    const onClickComment = async () => {
+    // const onClickComment = async () => {
 
-        try {
-            const accessToken = localStorage.getItem("accessToken");
-            // const jobpostId = data.id;
+    //     try {
+    //         const accessToken = localStorage.getItem("accessToken");
+    //         // const jobpostId = data.id;
 
-            //console.log(accessToken);
-            const response = await axios.post(`/api/jobpost/${id}/comment`, { jopPostId: id, content: comment }, {
-                headers: {
-                    'Authorization': accessToken,
-                },
-            });
+    //         //console.log(accessToken);
+    //         const response = await axios.post(`/api/jobpost/${id}/comment`, { id: id, content: comment }, {
+    //             headers: {
+    //                 'Authorization': accessToken,
+    //             },
+    //         });
 
-            console.log(response);
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    };
-
+    //         console.log(response);
+    //     } catch (error) {
+    //         console.error('Error fetching user data:', error);
+    //     }
+    // };
 
     return (
         <>
             <DialogBox>
                 <Xbox>
-                    <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModaled} />
+                    <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModal} />
                 </Xbox>
-                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={userTitle} />
-                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={userName} />
-                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={userDate} />
+                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={title} />
+                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={name} />
+                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={date} />
                 <StyleLine />
                 <BoxWrapper>
                     <ContentWrapper>
-                        {userContent}
+                        {content}
                     </ContentWrapper>
-                    {userData.map((comment) => (
+                    {commentList.map((comment) => (
                         <CommentContentBox
                             key={comment.id}
-                            commentItem={comment}
+                            id={comment.id}
+                            // 다른 필요한 데이터도 전달할 수 있음
+                            content={comment.content}
+                            date={comment.date}
+                            author={comment.author}
                         />
                     ))}
                 </BoxWrapper>
