@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import Smalltitle from "../../molecules/text/Smalltitle";
 import ModalMailDialogBox from "./ModalMailDialogBox";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
 
-const MailBox = ({ key, data }) => {
+const MailBox = ({ data }) => {
     const [userId, setUserId] = useState(null);
     const [senderEmail, setSenderEmail] = useState(null);
     const [receiverEmail, setReceiverEmail] = useState(null);
@@ -17,7 +17,6 @@ const MailBox = ({ key, data }) => {
         setModalOpen(true);
         try {
             const accessToken = localStorage.getItem("accessToken");
-            // const jobpostId = data.id;
             //console.log(accessToken);
             const response = await axios.get(`/api/message/${userMail}`, {
                 headers: {
@@ -44,40 +43,13 @@ const MailBox = ({ key, data }) => {
     }
 
     const userMail = data.userEmail;
-    //console.log("userMail", userMail);
-
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-    //         try {
-    //             const accessToken = localStorage.getItem("accessToken");
-    //             // const jobpostId = data.id;
-    //             //console.log(accessToken);
-    //             const response = await axios.get(`/api/message/${userMail}`, {
-    //                 headers: {
-    //                     'Authorization': accessToken,
-    //                 },
-    //             });
-
-    //             // 가져온 데이터를 state에 저장
-    //             //console.log("jobPost결과값: ", response.data);
-    //             console.log("userEmail Response", response.data);
-    //             setUserContent(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching user data:', error);
-    //         }
-    //     };
-    //     fetchUserData();
-    // }, []);
-    //console.log(userContent);
-
 
     return (
         <>
             <MailBoxWrapper onClick={openModal}>
                 <IoChatbubbleEllipses size="24" color="#2F9B79" />
-                {/* <Smalltitle weight="bold" content="종프 1 팀원 한 분 찾습니다. 보고 문의드립니다." /> */}
-                <Smalltitle weight="bold" content={data.userName} key={data.id} />
-                <Smalltitle content={data.userEmail} key={data.id} />
+                <Smalltitle weight="bold" content={data.userName}  />
+                <Smalltitle content={data.userEmail}  />
             </MailBoxWrapper>
             
             {isModalOpen && (
@@ -91,19 +63,6 @@ const MailBox = ({ key, data }) => {
                         closeModal={closeModal} />
                 </ModalWrapper>
             )}
-            {/* {isModalOpen && userContent && userContent.senderEmail === data.userEmail && (
-                    <ModalWrapper>
-                        <ModalMailDialogBox
-                            key={userContent.id}
-                            id={userContent.id}
-                            senderEmail={userContent.senderEmail}
-                            receiverEmail={userContent.receiverEmail}
-                            date={userContent.date}
-                            content={userContent.content}
-                            closeModal={closeModal}
-                        />
-                    </ModalWrapper>
-                )} */}
         </>
     )
 };
