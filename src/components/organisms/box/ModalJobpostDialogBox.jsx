@@ -11,37 +11,32 @@ import CommentInput from "../../molecules/input/CommentInput";
 import CommentContentBox from "./CommentContentBox";
 
 const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, commentList }) => {
-    console.log(commentList);
+    //console.log(id);
 
-    const [contents, setContents] = useState('');
+    const [commentContent, setCommentContent] = useState('');
     const [jobPostCommentList, setJobPostCommentList] = useState(commentList);
 
     const fetchJobPostComments = async () => {
         try {
-          const accessToken = localStorage.getItem("accessToken");
-          const response = await axios.get(`/api/jobpost/${id}`, {
-            headers: {
-              'Authorization': accessToken,
-            },
-          });
-          
-          console.log("재응답후", response.data.commentList);
-          setJobPostCommentList(response.data.commentList);
+            const accessToken = localStorage.getItem("accessToken");
+            const response = await axios.get(`/api/jobpost/${id}`, {
+                headers: {
+                    'Authorization': accessToken,
+                },
+            });
+
+            setJobPostCommentList(response.data.commentList.map(comment => ({ ...comment, jobPostId: response.data.id })));
+
         } catch (error) {
-          console.error('Error fetching job post comments:', error);
+            console.error('Error fetching job post comments:', error);
         }
-      };
-    
-    //   useEffect(() => {
-    //     // 컴포넌트가 마운트된 후에 초기 데이터를 가져오도록 useEffect 사용
-    //     fetchJobPostComments();
-    //   }, []); 
+    };
 
     const onClickComment = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
             const commentData = {
-                content: contents,
+                content: commentContent,
             };
 
             const response = await axios.post(`/api/jobpost/${id}/comment`, commentData, {
@@ -50,15 +45,23 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
                 },
             });
 
-            console.log(response);
             alert("댓글 작성완료!");
 
             // 댓글 추가 후 최신 데이터를 서버에서 다시 받아옴
             await fetchJobPostComments();
+            
+            return response.data;
         } catch (error) {
-            console.error('Error fetching user data:', error);
+            console.error('Error posting comment:', error);
         }
     };
+
+    useEffect(() => {
+        // 컴포넌트가 마운트된 후에 초기 데이터를 가져오도록 useEffect 사용
+        fetchJobPostComments();
+    }, [id]);
+    
+    
 
     return (
         <>
@@ -74,20 +77,19 @@ const ModalJobpostDialogBox = ({ closeModal, id, title, name, date, content, com
                     <ContentWrapper>
                         {content}
                     </ContentWrapper>
-                    { console.log("jobPostCommentList", jobPostCommentList)}
-                    {commentList.map((comment) => (
+                    {jobPostCommentList.map((comment) => (
                         <CommentContentBox
                             key={comment.id}
                             id={comment.id}
-                            // 다른 필요한 데이터도 전달할 수 있음
                             content={comment.content}
                             date={comment.date}
                             author={comment.author}
+                            jopPostId={comment.jobPostId}
                         />
                     ))}
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={(e) => setContents(e.target.value)} />
+                    <CommentInput type="text" placeholder="댓글을 입력해주세요." onChange={(e) => setCommentContent(e.target.value)} />
                     <ButtonComment onClick={onClickComment} />
                     <ButtonMail />
                 </ButtonWrapper>
