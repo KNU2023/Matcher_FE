@@ -18,6 +18,7 @@ const DialogSkeletonReserve = ({ data }) => {
     const [reservationRow, setReservationRow] = useState(null);
     const [reservationCol, setReservationCol] = useState(null);
     const [reservationSeat, setReservationSeat] = useState(null);
+    const [reserveContent, setReserveContent] = useState(null);
 
     
     const openModal = async () => {
@@ -35,6 +36,7 @@ const DialogSkeletonReserve = ({ data }) => {
             //console.log("jobModal", response.data);
             setReservePostId(response.data.id);
             setReservePostTitle(response.data.title);
+            setReserveContent(response.data.content);
             setReservePostName(response.data.author.name);
             setReservePostdate(response.data.date);
             setReservationRow(response.data.rowSize);
@@ -87,6 +89,7 @@ const DialogSkeletonReserve = ({ data }) => {
                         closeModal={closeModal}
                         id={reservePostId}
                         title={reservePostTitle}
+                        content={reserveContent}
                         name={reservePostName}
                         date={reservePostdate}
                         row={reservationRow}

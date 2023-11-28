@@ -7,7 +7,7 @@ import ButtonReservation from "../button/ButtonReservation";
 // import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
 import SeatReserveButton from "../button/SeatReserveButton";
 
-const ModalReserveDialogBox = ({ closeModal, id, title, name, date, row, col, seat }) => {
+const ModalReserveDialogBox = ({ closeModal, id, content, title, name, date, row, col, seat }) => {
 
     return (
         <>
@@ -20,6 +20,10 @@ const ModalReserveDialogBox = ({ closeModal, id, title, name, date, row, col, se
                 <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={date} />
                 <StyleLine />
                 <BoxWrapper>
+                    <ContentWrapper>
+                        {content}
+                    </ContentWrapper>
+                    <TitleboxModalSecondText margin="25px 0px 0px 0px" weight="bold" size="20px" content="좌석을 선택해주세요.(중복 선택은 불가합니다.)" />
                     <SeatWrapper>
                         <SeatReserveButton
                             row={row}
@@ -68,6 +72,11 @@ const BoxWrapper = styled.div`
         background-color: #f1f1f1; /* Color of scrollbar track */
     }
 `;
+
+const ContentWrapper = styled.div`
+    width: 539px;
+`;
+
 
 const ButtonWrapper = styled.div`
     display: flex;
