@@ -7,52 +7,24 @@ import DialogSkeletonReserve from "../organisms/box/DialogSkeletonReserve";
 import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import ReservationSearch from "../organisms/input/ReservationSearch";
-import ModalReserveDialogBox from "../organisms/box/ModalReserveDialogBox";
+import TitleboxModalSecondText from "../molecules/text/TitleboxModalSecondText";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { MdOutlineReadMore } from "react-icons/md";
 import { selectAccessToken } from "../../store/authSlice";
 import LoginComplete from "../organisms/LoginComplete";
-// import { useDispatch, useSelector } from "react-redux";
-
-// const DUMMY_DATA = [
-//     {
-//         "hasNext": false,
-//         "data": [
-//             {
-//                 "id": 1,
-//                 "title": "제목",
-//                 "date": "2023-11-11T12:12:12",
-//                 "author": {
-//                     "email": "user1@example.com",
-//                     "name": "유저1",
-//                     "major": "major1",
-//                     "stdNumber": "12"
-//                 }
-//             },
-//             {
-//                 "id": 2,
-//                 "title": "제목",
-//                 "date": "2023-11-11T12:12:12",
-//                 "author": {
-//                     "email": "user1@example.com",
-//                     "name": "유저2",
-//                     "major": "major2",
-//                     "stdNumber": "13"
-//                 }
-//             }
-//         ]
-//     },
-// ]
+import axios from "axios";
 
 const ReservationTemplate = () => {
     // console.log("dummy : ", DUMMY_DATA);
     const navigate = useNavigate();
     const location = useLocation();
-    const [isModalOpen, setModalOpen] = useState(false);
     // const dispatch = useDispatch();
     // const reserveData = useSelector((state) => state.reserveData);
+    const [userData, setUserData] = useState([]);
+    const [pageNum, setPageNum] = useState(0);
     const accessToken = useSelector(selectAccessToken);
 
     const onClickCreate = () => {
@@ -63,18 +35,32 @@ const ReservationTemplate = () => {
         navigate("/");
     }
 
-    const openModal = () => {
-        setModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-
     const variants = {
         visible: { opacity: 1 },
         hidden: { opacity: 0 },
     }
+
+    const fetchUserData = async (page) => {
+        try {
+            const response = await axios.get(`/api/reservationpost?page=${page}&title=`, {
+                headers: {
+                    Authorization: accessToken,
+                },
+            });
+            setUserData((prevData) => [...prevData, ...response.data.data]);
+            console.log("reservationPost", response.data)
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData(pageNum);
+    }, [pageNum, accessToken]);
+
+    const handleLoadMore = () => {
+        setPageNum((prevPageNum) => prevPageNum + 1);
+    };
 
     return (
         <>
@@ -102,11 +88,29 @@ const ReservationTemplate = () => {
                         </TitleMainBox>
                         <ReservationSearch />
                         <ContentBoxWrapper>
-                            <DialogSkeletonReserve openModal={openModal} />
+                            {/* <DialogSkeletonReserve openModal={openModal} /> */}
                             {/* {DUMMY_DATA.map((item) => (
                                 <DialogSkeletonReserve key={item.id} reserveDataItem={item} />
                                 ,(console.log("item_data: ", item))
                             ))} */}
+
+                            {userData.length > 0 ? (
+                                userData.map((item) => (
+                                    <DialogSkeletonReserve
+                                        key={item.id}
+                                        id={item.id}
+                                        data={item}
+                                    />
+                                ))
+                            ) : (
+                                null
+                            )}
+                            {userData.length > 0 ? (
+                                <ReLoad>
+                                    <MdOutlineReadMore size="30" color="#03C75A" cursor="pointer" onClick={handleLoadMore} />
+                                    <TitleboxModalSecondText content="Click And Get More Post!" />
+                                </ReLoad>
+                            ) : (null)}
                         </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>
@@ -115,11 +119,6 @@ const ReservationTemplate = () => {
                     {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
-                {isModalOpen && (
-                    <ModalWrapper>
-                        <ModalReserveDialogBox closeModal={closeModal} />
-                    </ModalWrapper>
-                )}
             </Wrapper>
         </>
     )
@@ -159,11 +158,45 @@ const ContentBoxWrapper = styled.div`
   }
 `;
 
-const ModalWrapper = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+const ReLoad = styled.div`
+width:146px;
+height:124px;
+padding: 13px 16px 10px 17px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 `;
 
 export default ReservationTemplate;
+
+
+// const DUMMY_DATA = [
+//     {
+//         "hasNext": false,
+//         "data": [
+//             {
+//                 "id": 1,
+//                 "title": "제목",
+//                 "date": "2023-11-11T12:12:12",
+//                 "author": {
+//                     "email": "user1@example.com",
+//                     "name": "유저1",
+//                     "major": "major1",
+//                     "stdNumber": "12"
+//                 }
+//             },
+//             {
+//                 "id": 2,
+//                 "title": "제목",
+//                 "date": "2023-11-11T12:12:12",
+//                 "author": {
+//                     "email": "user1@example.com",
+//                     "name": "유저2",
+//                     "major": "major2",
+//                     "stdNumber": "13"
+//                 }
+//             }
+//         ]
+//     },
+// ]

@@ -4,23 +4,28 @@ import TitleboxModalText from "../../molecules/text/TitleboxModalText";
 import styled from "styled-components";
 import { IoMdCloseCircle } from "react-icons/io";
 import ButtonReservation from "../button/ButtonReservation";
-import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
+// import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
+import SeatReserveButton from "../button/SeatReserveButton";
 
-const ModalReserveDialogBox = ({ closeModal }) => {
+const ModalReserveDialogBox = ({ closeModal, id, title, name, date, row, col, seat }) => {
+
     return (
         <>
             <DialogBox>
                 <Xbox>
                     <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModal} />
                 </Xbox>
-                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content="종프 팀원 한분 찾습니다." />
-                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content="컴학3학년" />
-                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content="2023.11.02" />
+                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={title} />
+                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={name} />
+                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={date} />
                 <StyleLine />
                 <BoxWrapper>
-                    123
                     <SeatWrapper>
-                        <ReserveSeatBoxButton />
+                        <SeatReserveButton
+                            row={row}
+                            col={col}
+                            seat={seat}
+                        />
                     </SeatWrapper>
                 </BoxWrapper>
                 <ButtonWrapper>
