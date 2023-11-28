@@ -8,9 +8,12 @@ import axios from 'axios';
 import EditUserForm from "../organisms/input/EditUserForm";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "../../store/signUpSlice";
+import { useLocation } from "react-router-dom";
+import MyPageJob from "../organisms/MyPageJob";
 
 const MyPageTemplate = () => {
     const [userName, setUserName] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -62,7 +65,13 @@ const MyPageTemplate = () => {
                     <SmallLittleText>으라차차</SmallLittleText>
                 </ProfileBox>
                 <ContentBox>
-                    <EditUserForm formData={formData} setFormData={setFormData} />
+                    {location.pathname === "/mypage" ? (
+                        <EditUserForm formData={formData} setFormData={setFormData} />
+                    ) : (
+                        location.pathname === "/mypage/reservation" ? (null) : (
+                            location.pathname === "/mypage/jobpost" ? (<MyPageJob />) : (null)
+                        )
+                    )}
                 </ContentBox>
             </Wrapper>
         </>
