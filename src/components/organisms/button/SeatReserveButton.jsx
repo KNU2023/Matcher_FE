@@ -4,7 +4,7 @@ import styled from "styled-components";
 const SeatReserveButton = ({ row, col, seat }) => {
     const rows = row;
     const columns = col;
-    console.log("부커스", seat);
+    //console.log("부커스", seat);
 
     const createSeatId = (row, column) => `p${row}_${column}`;
 

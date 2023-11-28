@@ -14,6 +14,7 @@ const DialogSkeleton = ({ data }) => {
   const [jobPostdate, setJobPostdate] = useState(null);
   const [jobPostContent, setJobPostContent] = useState(null);
   const [jobPostCommentList, setJobPostCommentList] = useState([]);
+  
 
   const openModal = async () => {
     setModalOpen(true);
@@ -27,7 +28,7 @@ const DialogSkeleton = ({ data }) => {
       });
 
       // 가져온 데이터를 state에 저장
-      //console.log("jobModal", response.data);
+      // console.log("jobModal", response.data);
       setJobPostId(response.data.id);
       setJobPostTitle(response.data.title);
       setJobPostName(response.data.author.name);

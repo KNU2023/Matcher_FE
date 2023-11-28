@@ -8,6 +8,7 @@ import ButtonReservation from "../button/ButtonReservation";
 import SeatReserveButton from "../button/SeatReserveButton";
 
 const ModalReserveDialogBox = ({ closeModal, id, content, title, name, date, row, col, seat }) => {
+    console.log("자리", seat);
 
     return (
         <>

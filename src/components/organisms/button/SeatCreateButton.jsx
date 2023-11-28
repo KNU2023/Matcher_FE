@@ -17,6 +17,8 @@ const SeatCreateButton = () => {
         }))
     ).flat();
 
+    console.log("더미", DUMMY_SEAT)
+
     return (
         <SeatBoxWrapper>
             {DUMMY_SEAT.map((seat) => (

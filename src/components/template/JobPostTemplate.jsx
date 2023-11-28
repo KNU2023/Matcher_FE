@@ -39,14 +39,14 @@
 
         const fetchUserData = async (page) => {
             try {
-                const response = await axios.get(`/api/jobpost?page=${page}`, {
+                const response = await axios.get(`/api/jobpost?page=${page}&title=`, {
                     headers: {
                         Authorization: accessToken,
                     },
                 });
 
                 setUserData((prevData) => [...prevData, ...response.data.data]);
-                //console.log(response)
+                console.log(response.data)
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }

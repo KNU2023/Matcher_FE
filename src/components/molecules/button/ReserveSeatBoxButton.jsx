@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ReserveSeatBoxButton = ({ id, row, column, booker, onClick, isActive  }) => {
 
-    console.log("booker 제대로", booker);
+    //console.log("booker 제대로", booker);
 
     return (
         <ClickButton

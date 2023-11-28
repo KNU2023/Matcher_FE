@@ -42,7 +42,7 @@ const DialogSkeletonReserve = ({ data }) => {
             setReservationRow(response.data.rowSize);
             setReservationCol(response.data.colSize);
             setReservationSeat(response.data.seatList);
-            console.log(response.data);
+            console.log("seatList", response.data.seatList);
 
         } catch (error) {
             console.error('Error fetching user data:', error);
