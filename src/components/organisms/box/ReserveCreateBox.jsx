@@ -22,7 +22,6 @@ const ReserveCreateBox = () => {
         console.log("Parent selectedSeats:", seats);
     };
 
-
     const onSubmitHandler = async () => {
         try {
             // 예약 생성에 필요한 데이터 수집
@@ -32,10 +31,6 @@ const ReserveCreateBox = () => {
             const colSize = 12;
             const disableSeatList = selectedSeats;
 
-
-            // 여기서는 예시로 빈 좌석 배열을 전달하고 있습니다. 실제로는 좌석 선택 로직이 필요할 것입니다.
-
-
             // const requestData = {
             //     title,
             //     content,
@@ -44,21 +39,19 @@ const ReserveCreateBox = () => {
             //     disableSeatList: selectedSeats,
             // };
 
-
-            // 서버에 데이터 전송
             await dispatch(
                 axiosReserveData({
-                  title,
-                  content,
-                  rowSize,
-                  colSize,
-                  disableSeatList,
+                    title,
+                    content,
+                    rowSize,
+                    colSize,
+                    disableSeatList,
                 })
-              );
+            );
 
             // 성공 메시지
             alert("예약이 생성되었습니다.");
-            //window.location.replace("/")
+            window.location.replace("/")
             //console.log(requestData);
         } catch (error) {
             // 오류 처리

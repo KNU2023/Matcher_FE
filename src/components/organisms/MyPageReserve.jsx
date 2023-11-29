@@ -38,7 +38,7 @@ const MyPageReserve = () => {
                         key={reserve.id}
                         title={reserve.title}
                         date={reserve.date}
-                        jobPostId={reserve.id}
+                        reserveId={reserve.id}
                         ownerName={reserve.ownerName}
                     />
                 ))}
