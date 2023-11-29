@@ -6,10 +6,10 @@ import Img from "../atoms/img/Img";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditUserForm from "../organisms/input/EditUserForm";
-import { useDispatch, useSelector } from "react-redux";
-import { updateFormData } from "../../store/signUpSlice";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import MyPageJob from "../organisms/MyPageJob";
+import MyPageReserve from "../organisms/MyPageReserve";
 
 const MyPageTemplate = () => {
     const [userName, setUserName] = useState(null);
@@ -38,13 +38,9 @@ const MyPageTemplate = () => {
         fetchUserData();
     }, []);
 
-    const dispatch = useDispatch();
 
     const formData = useSelector((state) => state.signup.formData);
 
-    const setFormData = (data) => {
-        dispatch(updateFormData(data));
-    };
 
     const handleButtonClick = () => {
         localStorage.removeItem('accessToken');
@@ -66,9 +62,9 @@ const MyPageTemplate = () => {
                 </ProfileBox>
                 <ContentBox>
                     {location.pathname === "/mypage" ? (
-                        <EditUserForm formData={formData} setFormData={setFormData} />
+                        <EditUserForm formData={formData} />
                     ) : (
-                        location.pathname === "/mypage/reservation" ? (null) : (
+                        location.pathname === "/mypage/reservation" ? (<MyPageReserve />) : (
                             location.pathname === "/mypage/jobpost" ? (<MyPageJob />) : (null)
                         )
                     )}
