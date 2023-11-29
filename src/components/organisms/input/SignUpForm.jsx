@@ -17,7 +17,8 @@ import PWSignInput from "../../molecules/input/PWSignInput";
 import ButtonSignUp from "../button/ButtonSignUp";
 import CheckSign from "../box/CheckSign.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {toggleCheck} from "../../../store/signUpSlice.jsx";
+import { toggleCheck } from "../../../store/signUpSlice.jsx";
+import axios from "axios";
 
 
 
@@ -28,7 +29,7 @@ const SignUpForm = ({ formData, setFormData }) => {
     const handleStudentNumberChange = (e) => {
         setFormData({
             ...formData,
-            studentNumber: e.target.value,
+            stdNumber: e.target.value,
         });
         //console.log(e.target.value);
     }
@@ -44,7 +45,7 @@ const SignUpForm = ({ formData, setFormData }) => {
     const handleNicknameChange = (e) => {
         setFormData({
             ...formData,
-            nickname: e.target.value,
+            name: e.target.value,
         });
         //console.log(e.target.value);
     }
@@ -65,13 +66,26 @@ const SignUpForm = ({ formData, setFormData }) => {
         //console.log(e.target.value);
     }
 
-    const submitHandler = () => {
+    const submitHandler = async () => {
         // formData에 저장된 값 출력
-        console.log(formData);
         if (isChecked) {
-            alert("회원가입이 완료되었습니다.");
             // console.log(formData)
             // navigate("/");
+            console.log(formData);
+
+            try {
+
+
+                const response = await axios.post("/api/signup", formData);
+                console.log('서버 응답:', response.data);
+
+                alert("회원가입이 완료되었습니다.");
+                window.location.replace("/")
+
+            } catch (error) {
+                console.error('데이터 제출 오류:', error);
+
+            }
         } else {
             alert("개인정보 처리 방침에 동의해야 합니다.");
         }
@@ -143,7 +157,7 @@ const SignUpForm = ({ formData, setFormData }) => {
                 </NNSignUpFormBox>
             </SignUpFormBox>
             <CheckWrapper>
-                <CheckSign isChecked={isChecked} setIsChecked={() => dispatch(toggleCheck())}/>
+                <CheckSign isChecked={isChecked} setIsChecked={() => dispatch(toggleCheck())} />
             </CheckWrapper>
             <ButtonSignUp onClick={submitHandler} />
         </>
