@@ -25,6 +25,7 @@ const ReservationTemplate = () => {
     // const reserveData = useSelector((state) => state.reserveData);
     const [userData, setUserData] = useState([]);
     const [pageNum, setPageNum] = useState(0);
+    const [searchData, setSearchData] = useState("");
     const accessToken = useSelector(selectAccessToken);
 
     const onClickCreate = () => {
@@ -40,9 +41,9 @@ const ReservationTemplate = () => {
         hidden: { opacity: 0 },
     }
 
-    const fetchUserData = async (page) => {
+    const fetchUserData = async (page, title) => {
         try {
-            const response = await axios.get(`/api/reservationpost?page=${page}&title=`, {
+            const response = await axios.get(`/api/reservationpost?page=${page}&title=${title}`, {
                 headers: {
                     Authorization: accessToken,
                 },
@@ -54,8 +55,15 @@ const ReservationTemplate = () => {
         }
     };
 
+    const handleSearch = () => {
+        setUserData([]);
+        setPageNum(0);
+
+        fetchUserData(pageNum, searchData);
+    };
+
     useEffect(() => {
-        fetchUserData(pageNum);
+        fetchUserData(pageNum, searchData);
     }, [pageNum, accessToken]);
 
     const handleLoadMore = () => {
@@ -86,7 +94,10 @@ const ReservationTemplate = () => {
                                 active={location.pathname === "create"}
                             />
                         </TitleMainBox>
-                        <ReservationSearch />
+                        <ReservationSearch
+                            onChange={(e) => setSearchData(e.target.value)}
+                            onClick={handleSearch}
+                        />
                         <ContentBoxWrapper>
                             {/* <DialogSkeletonReserve openModal={openModal} /> */}
                             {/* {DUMMY_DATA.map((item) => (
