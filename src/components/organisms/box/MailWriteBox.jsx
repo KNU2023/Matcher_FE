@@ -28,6 +28,7 @@ const MailWriteBox = () => {
             const response = await axios.post('/api/message', messageData, {
                 headers: {
                     'Authorization': accessToken,
+                    'Content-Type': 'application/json',
                 },
             });
 
