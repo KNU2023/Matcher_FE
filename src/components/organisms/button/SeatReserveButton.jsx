@@ -1,7 +1,7 @@
 import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
 import styled from "styled-components";
 
-const SeatReserveButton = ({ row, col, seat }) => {
+const SeatReserveButton = ({ row, col, seat, onSeatSelect }) => {
     const rows = row;
     const columns = col;
     //console.log("부커스", seat);
@@ -14,24 +14,28 @@ const SeatReserveButton = ({ row, col, seat }) => {
             const reservationInfo = seat.find(info => info.rowNumber === rowIndex && info.colNumber === columnIndex);
             return {
                 id: seatId,
-                row: rowIndex,
-                column: columnIndex,
+                rowNumber: rowIndex,
+                colNumber: columnIndex,
                 booker: reservationInfo ? reservationInfo.booker : null,
                 hidden: !reservationInfo || reservationInfo.rowNumber === undefined || reservationInfo.colNumber === undefined,
             };
         })
     ).flat();
 
-    console.log("더미", DUMMY_SEAT);
+    //console.log("더미", DUMMY_SEAT);
 
     return (
         <SeatBoxWrapper>
             {DUMMY_SEAT.map((seat) => (
-                <BoxWrapper key={seat.id} style={{ visibility: seat.hidden ? 'hidden' : 'visible' }}>
+                <BoxWrapper
+                    key={seat.id}
+                    style={{ visibility: seat.hidden ? 'hidden' : 'visible' }}
+                    onClick={() => onSeatSelect([seat])}
+                >
                     <ReserveSeatBoxButton
                         id={seat.id}
-                        row={seat.row}
-                        column={seat.column}
+                        rowNumber={seat.rowNumber}
+                        colNumber={seat.colNumber}
                         booker={seat.booker}
                     />
                 </BoxWrapper>

@@ -6,9 +6,48 @@ import { IoMdCloseCircle } from "react-icons/io";
 import ButtonReservation from "../button/ButtonReservation";
 // import ReserveSeatBoxButton from "../../molecules/button/ReserveSeatBoxButton";
 import SeatReserveButton from "../button/SeatReserveButton";
+import { useState } from "react";
+import axios from "axios";
 
 const ModalReserveDialogBox = ({ closeModal, id, content, title, name, date, row, col, seat }) => {
-    console.log("자리", seat);
+    // console.log("자리", seat);
+
+    const [selectedSeats, setSelectedSeats] = useState([]);
+
+    const handleSeatSelect = (selectedReserve) => {
+        console.log(selectedReserve); // 확인용 로그
+
+        // selectedReserve을 배열로 처리하고 이를 selectedSeats에 추가
+        setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, ...selectedReserve]);
+    };
+
+    const onClickSubmit = async () => {
+        // console.log(selectedSeats);
+        const selectedSeatInfo = selectedSeats.map((seat) => ({
+            rowNumber: seat.rowNumber,
+            colNumber: seat.colNumber,
+        }));
+
+        // onClickSubmit 함수를 호출할 때, 원하는 형식의 JSON만을 전달
+        const onClickSubmitData = {
+            seatList: selectedSeatInfo,
+        };
+        console.log("좌석 정보:", onClickSubmitData);
+
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+            const response = await axios.post(`/api/reservationpost/${id}/seats`, onClickSubmitData,
+                {
+                    headers: {
+                        'Authorization': accessToken,
+                    },
+                }
+            );
+            alert("예약되었습니다.");
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -24,17 +63,18 @@ const ModalReserveDialogBox = ({ closeModal, id, content, title, name, date, row
                     <ContentWrapper>
                         {content}
                     </ContentWrapper>
-                    <TitleboxModalSecondText margin="25px 0px 0px 0px" weight="bold" size="20px" content="좌석을 선택해주세요.(중복 선택은 불가합니다.)" />
+                    <TitleboxModalSecondText margin="25px 0px 0px 0px" weight="bold" size="20px" content="좌석을 선택해주세요." />
                     <SeatWrapper>
                         <SeatReserveButton
                             row={row}
                             col={col}
                             seat={seat}
+                            onSeatSelect={handleSeatSelect}
                         />
                     </SeatWrapper>
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <ButtonReservation />
+                    <ButtonReservation onClick={onClickSubmit} />
                 </ButtonWrapper>
             </DialogBox>
         </>

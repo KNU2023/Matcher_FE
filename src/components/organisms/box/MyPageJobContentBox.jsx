@@ -3,6 +3,7 @@ import TitleboxModalSecondText from "../../molecules/text/TitleboxModalSecondTex
 import styled from "styled-components";
 import { MdOutlineDelete } from "react-icons/md";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
+import axios from "axios";
 
 const MyPageJobContentBox = ({ title, date, jobPostId, author }) => {
 
@@ -21,12 +22,11 @@ const MyPageJobContentBox = ({ title, date, jobPostId, author }) => {
                     },
                 });
 
-                console.log(response.data);
                 alert("삭제되었습니다.")
                 window.location.reload();
             }
             catch (error) {
-                //throw new Error(`예약 데이터를 가져오는 중 오류 발생: ${error.message}`);
+                throw new Error(`구인구직 데이터를 가져오는 중 오류 발생: ${error.message}`);
                 console.log(error);
             }
         }

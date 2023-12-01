@@ -1,12 +1,10 @@
 import Dialogbutton from "../../molecules/button/Dialogbutton";
 
-const ButtonReservation = () => {
-    const handleButtonClick = () => {
-        alert('예약되었습니다.');
-    };
+const ButtonReservation = ({ onClick }) => {
 
-    return(
-        <Dialogbutton title="예약하기" onClick={handleButtonClick}/>
+
+    return (
+        <Dialogbutton title="예약하기" onClick={onClick} />
     )
 }
 
