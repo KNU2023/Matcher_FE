@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import MyPageJobContentBox from "./box/MyPageJobContentBox";
+import EditReserveBox from "./input/EditReserveBox";
 
 const MyPageJob = () => {
     const [jobPost, setJobPost] = useState([]);
