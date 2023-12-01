@@ -14,8 +14,8 @@ const SeatReserveButton = ({ row, col, seat }) => {
             const reservationInfo = seat.find(info => info.rowNumber === rowIndex && info.colNumber === columnIndex);
             return {
                 id: seatId,
-                row: rowIndex + 1,
-                column: columnIndex + 1,
+                row: rowIndex,
+                column: columnIndex,
                 booker: reservationInfo ? reservationInfo.booker : null,
                 hidden: !reservationInfo || reservationInfo.rowNumber === undefined || reservationInfo.colNumber === undefined,
             };
