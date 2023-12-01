@@ -2,11 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import jobPostCategorySlice from "./jobPostCategorySlice";
 import mailCategorySlice from "./mailCategorySlice";
 import reserveCategorySlice from "./reserveCategorySlice";
-// import createSeatSlice from "./createSeatSlice";
 import signUpSlice from "./signUpSlice";
 import signInSlice from "./signInSlice";
 import authSlice from "./authSlice";
 import reserveSlice from "./reserveSlice";
+import jobPostSlice from "./jobPostSlice";
 
 const store = configureStore({
     reducer: {
@@ -17,7 +17,7 @@ const store = configureStore({
         signin: signInSlice.reducer,
         auth: authSlice.reducer,
         reserve: reserveSlice.reducer,
-        // createSeat : createSeatSlice.reducer,
+        jobpost: jobPostSlice.reducer,
     }
 })
 
