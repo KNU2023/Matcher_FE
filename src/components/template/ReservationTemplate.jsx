@@ -11,9 +11,6 @@ import ModalReserveDialogBox from "../organisms/box/ModalReserveDialogBox";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectAccessToken } from "../../store/authSlice";
-import LoginComplete from "../organisms/LoginComplete";
 // import { useDispatch, useSelector } from "react-redux";
 
 // const DUMMY_DATA = [
@@ -53,7 +50,7 @@ const ReservationTemplate = () => {
     const [isModalOpen, setModalOpen] = useState(false);
     // const dispatch = useDispatch();
     // const reserveData = useSelector((state) => state.reserveData);
-    const accessToken = useSelector(selectAccessToken);
+
 
     const onClickCreate = () => {
         navigate("/create");
@@ -112,7 +109,7 @@ const ReservationTemplate = () => {
                 </motion.div>
                 <ContentWrapper>
                     <Category />
-                    {accessToken ? <LoginComplete /> : <Login />}
+                    <Login />
                     <Alarm />
                 </ContentWrapper>
                 {isModalOpen && (

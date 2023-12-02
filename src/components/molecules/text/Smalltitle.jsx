@@ -1,6 +1,6 @@
 import Text from "../../atoms/text/Text";
 
-const Smalltitle = ({ content, color, justifyContent, weight, onClick, margin }) => {
+const Smalltitle = ({ content, color, justifyContent, weight, onClick }) => {
     return (
         <>
             <Text
@@ -11,7 +11,7 @@ const Smalltitle = ({ content, color, justifyContent, weight, onClick, margin })
                 flexDirection="row"
                 justifyContent={justifyContent}
                 textAlign="center"
-                margin={margin}
+                margin="0px"
                 onClick={onClick}
             >
                 {content}
