@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import JobPostCreateBox from "../organisms/box/JobPostCreateBox";
 import { useSelector } from "react-redux";
 import { selectAccessToken } from "../../store/authSlice";
+import { useState } from "react";
 
 
 
@@ -17,6 +18,11 @@ const JobPostCreateTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const accessToken = useSelector(selectAccessToken);
+    const [showCreateBox, setShowCreateBox] = useState(true);
+
+    const onSubmitHandler = () => {
+        setShowCreateBox(false);
+    };
 
     const onClickJob = () => {
         navigate("/jobpost");
@@ -40,7 +46,11 @@ const JobPostCreateTemplate = () => {
                             active={location.pathname === "/jobpost/create"}
                         />
                     </TitleMainBox>
-                    <JobPostCreateBox />
+                    {showCreateBox ? (
+                        <JobPostCreateBox onSubmitHandler={onSubmitHandler} />
+                    ) : (
+                        <JobPostCreateImageBox />
+                    )}
                 </MainBox>
                 <ContentWrapper>
                     <Category />
