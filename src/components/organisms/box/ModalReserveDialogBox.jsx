@@ -44,6 +44,7 @@ const ModalReserveDialogBox = ({ closeModal, id, content, title, name, date, row
                 }
             );
             alert("예약되었습니다.");
+            closeModal();
         } catch (error) {
             console.log(error);
         }
