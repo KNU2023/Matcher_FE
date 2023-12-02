@@ -1,5 +1,8 @@
 # Matcher_FE
-
+<p align="center">
+  
+![gif-변환용](https://github.com/KNU2023/Matcher_FE/assets/48755156/5ea612d9-0583-4b5f-99d9-59d8e809db0a)
+</p>
 - Issue 생성
 
   - 제목에 어떤 것을 수정할 것인지 기재
