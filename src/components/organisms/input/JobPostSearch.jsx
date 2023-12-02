@@ -3,22 +3,7 @@ import styled from "styled-components"
 import { BiSearch } from "react-icons/bi"
 import { AiOutlineFileMarkdown } from "react-icons/ai"
 
-const SearchWrapper = styled.div`
-    width: 500px;
-    height: 24px;
-    border-radius: 20px;
-    border: 2px solid #2F9B79;
-    padding: 15px 0px 15px 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-`;
-
-const IconWrapper = styled.div`
-    margin: ${props => props.margin || '0px'}; /* margin을 prop으로 받아 설정 */
-`;
-
-const ReservationSearch = ({ onChange, onClick }) => {
+const JobPostSearch = ({ onChange, onClick }) => {
     return (
         <>
             <SearchWrapper>
@@ -34,4 +19,19 @@ const ReservationSearch = ({ onChange, onClick }) => {
     )
 }
 
-export default ReservationSearch
+export default JobPostSearch;
+
+const SearchWrapper = styled.div`
+    width: 500px;
+    height: 24px;
+    border-radius: 20px;
+    border: 2px solid #2F9B79;
+    padding: 15px 0px 15px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+const IconWrapper = styled.div`
+    margin: ${props => props.margin || '0px'}; /* margin을 prop으로 받아 설정 */
+`;

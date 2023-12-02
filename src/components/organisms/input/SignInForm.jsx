@@ -8,17 +8,15 @@ import ButtonSignIn from "../button/ButtonSignIn";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const SignInForm = ({ formData, setFormData }) => {
     const navigate = useNavigate();
-
 
     const IDchange = (e) => {
         setFormData({
             ...formData,
             email: e.target.value,
         });
-        //console.log(e.target.value);
+        // console.log(e.target.value);
     }
 
     const PWchange = (e) => {
@@ -26,7 +24,7 @@ const SignInForm = ({ formData, setFormData }) => {
             ...formData,
             password: e.target.value,
         });
-        //console.log(e.target.value);
+        // console.log(e.target.value);
     }
 
     const submitHandler = async() => {
@@ -50,7 +48,6 @@ const SignInForm = ({ formData, setFormData }) => {
         }
 
     };
-
 
     return (
         <>
@@ -81,7 +78,7 @@ const SignInForm = ({ formData, setFormData }) => {
                     </Wrapper>
                 </IDFormBox>
             </PWFormWrapper>
-
+            <ButtonSignIn onClick={submitHandler} />
         </>
     )
 }

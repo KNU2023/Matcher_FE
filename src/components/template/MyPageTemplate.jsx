@@ -11,23 +11,64 @@ import { useLocation } from "react-router-dom";
 import MyPageJob from "../organisms/MyPageJob";
 import MyPageReserve from "../organisms/MyPageReserve";
 
-
 const MyPageTemplate = () => {
+    const [userName, setUserName] = useState(null);
+    const location = useLocation();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                //console.log(accessToken);
+                // 데이터를 가져오는 API 호출
+                const response = await axios.get('/api/user', {
+                    headers: {
+                        'Authorization': accessToken,
+                    },
+                });
+
+                // 가져온 데이터를 state에 저장
+                setUserName(response.data.name);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        // 컴포넌트가 마운트될 때 데이터를 가져오도록 useEffect에서 호출
+        fetchUserData();
+    }, []);
+
+
+    const formData = useSelector((state) => state.signup.formData);
+
+
+    const handleButtonClick = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        alert('로그아웃되었습니다.');
+        window.location.replace("/");
+    };
+
+
     return (
         <>
             <Wrapper>
                 <ProfileBox>
                     <Img margin="11px 0px 11px 0px" width="111px" height="111px">{profile}</Img>
-                    <ProfileText content="김민수" margin="0px 0px 87px 0px"/>
+                    <ProfileText content={userName} margin="0px 0px 87px 0px" />
                     <MyprofileNavigation />
-                    <LittleText>로그아웃</LittleText>
+                    <LittleText onClick={handleButtonClick}>로그아웃</LittleText>
                     <SmallLittleText>으라차차</SmallLittleText>
                 </ProfileBox>
-                <SideBox>
-                    <ContentBox>
-
-                    </ContentBox>
-                </SideBox>
+                <ContentBox>
+                    {location.pathname === "/mypage" ? (
+                        <EditUserForm formData={formData} />
+                    ) : (
+                        location.pathname === "/mypage/reservation" ? (<MyPageReserve />) : (
+                            location.pathname === "/mypage/jobpost" ? (<MyPageJob />) : (null)
+                        )
+                    )}
+                </ContentBox>
             </Wrapper>
         </>
     )
@@ -51,16 +92,14 @@ const ProfileBox = styled.div`
     align-items: center;
 `;
 
-const SideBox = styled.div`
-    width: 739px;
-    height: 832px;
-    background-color: #F9FBFC;
-`;
-
 const ContentBox = styled.div`
     width: 609px;
     height: 832px;
     background-color: #F9FBFC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 const LittleText = styled.span`

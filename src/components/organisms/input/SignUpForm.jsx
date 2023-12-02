@@ -14,13 +14,22 @@ import MJSignInput from "../../molecules/input/MJSignInput";
 import IDFormBox from "../../molecules/box/IDFormBox";
 import IDSignInput from "../../molecules/input/IDSignInput";
 import PWSignInput from "../../molecules/input/PWSignInput";
+import ButtonSignUp from "../button/ButtonSignUp";
+import CheckSign from "../box/CheckSign.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCheck } from "../../../store/signUpSlice.jsx";
+import axios from "axios";
+
+
 
 const SignUpForm = ({ formData, setFormData }) => {
+    const dispatch = useDispatch();
+    const isChecked = useSelector((state) => state.signup.isChecked);
 
     const handleStudentNumberChange = (e) => {
         setFormData({
             ...formData,
-            studentNumber: e.target.value,
+            stdNumber: e.target.value,
         });
         //console.log(e.target.value);
     }
@@ -36,7 +45,7 @@ const SignUpForm = ({ formData, setFormData }) => {
     const handleNicknameChange = (e) => {
         setFormData({
             ...formData,
-            nickname: e.target.value,
+            name: e.target.value,
         });
         //console.log(e.target.value);
     }
@@ -56,6 +65,31 @@ const SignUpForm = ({ formData, setFormData }) => {
         });
         //console.log(e.target.value);
     }
+
+    const submitHandler = async () => {
+        // formData에 저장된 값 출력
+        if (isChecked) {
+            // console.log(formData)
+            // navigate("/");
+            console.log(formData);
+
+            try {
+
+
+                const response = await axios.post("/api/signup", formData);
+                console.log('서버 응답:', response.data);
+
+                alert("회원가입이 완료되었습니다.");
+                window.location.replace("/")
+
+            } catch (error) {
+                console.error('데이터 제출 오류:', error);
+
+            }
+        } else {
+            alert("개인정보 처리 방침에 동의해야 합니다.");
+        }
+    };
 
     return (
         <>
@@ -122,11 +156,19 @@ const SignUpForm = ({ formData, setFormData }) => {
                     </Wrapper>
                 </NNSignUpFormBox>
             </SignUpFormBox>
+            <CheckWrapper>
+                <CheckSign isChecked={isChecked} setIsChecked={() => dispatch(toggleCheck())} />
+            </CheckWrapper>
+            <ButtonSignUp onClick={submitHandler} />
         </>
     )
 }
 
 export default SignUpForm;
+
+const CheckWrapper = styled.div`
+    margin: 77px 0px 77px 0px;
+`;
 
 const Wrapper = styled.div`
     display: flex;

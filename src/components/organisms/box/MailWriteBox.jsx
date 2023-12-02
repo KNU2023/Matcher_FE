@@ -10,7 +10,6 @@ import axios from 'axios';
 
 
 const MailWriteBox = () => {
-<<<<<<< HEAD
     const [receiverEmail, setReceiverEmail] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
@@ -45,8 +44,7 @@ const MailWriteBox = () => {
         }
     };
 
-=======
->>>>>>> 295256b9676721bd6069e0e7cbb6a436e38e1690
+
     return (
         <>
             <DialogFormBox>
