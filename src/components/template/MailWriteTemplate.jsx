@@ -7,14 +7,10 @@ import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
 import MailWriteBox from "../organisms/box/MailWriteBox";
-import { useSelector } from "react-redux";
-import { selectAccessToken } from "../../store/authSlice";
-import LoginComplete from "../organisms/LoginComplete";
 
 const MailWriteTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const accessToken = useSelector(selectAccessToken);
 
 
     const onClickWrite = () => {
@@ -49,7 +45,7 @@ const MailWriteTemplate = () => {
                 </MainBox>
                 <ContentWrapper>
                     <Category />
-                    {accessToken ? <LoginComplete /> : <Login />}
+                    <Login />
                     <Alarm />
                 </ContentWrapper>
             </Wrapper>

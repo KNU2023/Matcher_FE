@@ -13,7 +13,6 @@ const StyledInput = styled.input`
   padding: ${props => props.padding || '0'};
   margin-top: ${props => props.marginTop || '0'};
   margin-bottom: ${props => props.marginBottom || '0'};
-  margin-right: ${props => props.marginRight || '0'};
   
   outline: none;
 
@@ -36,7 +35,6 @@ const Input = ({
   boxShadow,
   marginTop,
   marginBottom,
-  marginRight,
   padding,
   value,
   onChange,
@@ -56,7 +54,6 @@ const Input = ({
       padding={padding}
       marginTop={marginTop}
       marginBottom={marginBottom}
-      marginRight={marginRight}
       value={value}
       onChange={onChange}
       {...restProps}

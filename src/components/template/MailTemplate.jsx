@@ -7,19 +7,23 @@ import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import MailBox from "../organisms/box/MailBox";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { selectAccessToken } from "../../store/authSlice";
-import LoginComplete from "../organisms/LoginComplete";
-import axios from "axios";
+import ModalMailDialogBox from "../organisms/box/ModalMailDialogBox";
 
 const MailTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [userData, setUserData] = useState([]);
-    const accessToken = useSelector(selectAccessToken);
-  
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
 
     const onClickWrite = () => {
         navigate("/mail/write");
@@ -33,31 +37,6 @@ const MailTemplate = () => {
         visible: { opacity: 1 },
         hidden: { opacity: 0 },
     }
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const accessToken = localStorage.getItem("accessToken");
-                //console.log(accessToken);
-                // 데이터를 가져오는 API 호출
-                const response = await axios.get('/api/message', {
-                    headers: {
-                        'Authorization': accessToken,
-                    },
-                });
-
-                // 가져온 데이터를 state에 저장
-                //console.log(response.data);
-                setUserData(response.data);
-                //console.log(userData);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-
-        // 컴포넌트가 마운트될 때 데이터를 가져오도록 useEffect에서 호출
-        fetchUserData();
-    }, []);
 
     return (
         <>
@@ -85,25 +64,20 @@ const MailTemplate = () => {
                             />
                         </TitleMainBox>
                         <ContentBoxWrapper>
-                            {userData.length > 0 ? (
-                                userData.map((item) => (
-                                    <MailBox
-                                        key={item.id}
-                                        id={item.id}
-                                        data={item}
-                                    />
-                                ))
-                            ) : (
-                                null
-                            )}
+                            <MailBox openModal={openModal}/>
                         </ContentBoxWrapper>
                     </MainBox>
                 </motion.div>
                 <ContentWrapper>
                     <Category />
-                    {accessToken ? <LoginComplete /> : <Login />}
+                    <Login />
                     <Alarm />
                 </ContentWrapper>
+                {isModalOpen && (
+                    <ModalWrapper>
+                        <ModalMailDialogBox closeModal={closeModal}/>
+                    </ModalWrapper>
+                )}
             </Wrapper>
         </>
     )
@@ -145,3 +119,9 @@ const ContentBoxWrapper = styled.div`
   }
 `;
 
+const ModalWrapper = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;

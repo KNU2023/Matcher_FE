@@ -12,6 +12,19 @@ const SignInTemplate = () => {
     const formData = useSelector((state) => state.signin.formData);
 
 
+    // Submit 버튼을 눌렀을 때 실행될 함수
+    const submitHandler = () => {
+        // formData에 저장된 값 출력
+        console.log(formData);
+        alert("로그인이 완료되었습니다.");
+        navigate("/");
+        // if (isChecked) {
+        //     alert("로그인이 완료되었습니다.");
+        //     navigate("/");
+        // } else {
+        //     alert("로그인에 실패하였습니다. 다시 시도해주세요.");
+        // }
+    };
 
     return (
         <>
@@ -19,6 +32,7 @@ const SignInTemplate = () => {
                 <FormWrapper>
                     <SignInForm formData={formData} setFormData={(data) => dispatch(updateFormData(data))} />
                 </FormWrapper>
+                <ButtonSignIn onClick={submitHandler} />
             </Wrapper>
         </>
     )
