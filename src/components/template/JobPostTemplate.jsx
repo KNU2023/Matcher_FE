@@ -47,7 +47,7 @@ const JobPostTemplate = () => {
             });
 
             setUserData((prevData) => [...prevData, ...response.data.data]);
-            console.log(response.data)
+            console.log("jobPostArray", response.data)
         } catch (error) {
             console.error('Error fetching user data:', error);
         }

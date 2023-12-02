@@ -5,10 +5,13 @@ import ButtonCreateImage from "../button/ButtonCreateImage";
 import styled from "styled-components";
 import axios from "axios";
 import * as React from 'react';
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ButtonCreateNonImage from "../button/ButtonCreateNonImage";
 
 const JobPostCreateImageBox = ({ id }) => {
     const [file, setFile] = useState("");
+    const navigate = useNavigate();
 
     const handleUpload = (e) => {
         const selectedFile = e.target.files[0];
@@ -57,6 +60,7 @@ const JobPostCreateImageBox = ({ id }) => {
                         onChange={handleUpload}
                     />
                     <ButtonWrapper>
+                        <ButtonCreateNonImage onClick={(e) => navigate("/jobpost")} />
                         <ButtonCreateImage onClick={onSubmitHandler} />
                     </ButtonWrapper>
                 </BoxWrapper>

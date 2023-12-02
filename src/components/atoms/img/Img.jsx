@@ -6,9 +6,17 @@ const StyledImg = styled.img`
   padding: ${(props) => props.padding || "0"};
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "auto"};
+  position: relative; /* 추가된 부분 */
+  display: block;
+  font-size: ${(props) => props.fontsize || "1rem"};
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 
-const Img = ({ children, padding, margin, width, height }) => {
+
+
+const Img = ({ children, padding, margin, width, height, alt, fontsize }) => {
+  
   return (
     <>
       <StyledImg
@@ -16,10 +24,13 @@ const Img = ({ children, padding, margin, width, height }) => {
         height={height}
         padding={padding}
         margin={margin}
+        fontsize={fontsize}
         src={children}
-        alt="이미지" />
+        alt={alt}
+      />
     </>
   );
 };
+
 
 export default Img;

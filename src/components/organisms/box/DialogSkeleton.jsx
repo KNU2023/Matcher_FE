@@ -15,7 +15,8 @@ const DialogSkeleton = ({ data }) => {
   const [jobPostdate, setJobPostdate] = useState(null);
   const [jobPostContent, setJobPostContent] = useState(null);
   const [jobPostCommentList, setJobPostCommentList] = useState([]);
-  console.log(data.image);
+  const jobPostImage = data.image;
+  console.log("jobPostImage", data);
 
 
   const openModal = async () => {
@@ -37,7 +38,6 @@ const DialogSkeleton = ({ data }) => {
       setJobPostdate(response.data.date);
       setJobPostContent(response.data.content);
       setJobPostCommentList(response.data.commentList);
-      setJobPostImage(response.data.image);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
@@ -50,20 +50,25 @@ const DialogSkeleton = ({ data }) => {
   return (
     <>
       <ContentBox onClick={openModal}>
-        {/* <SkeletonBox
-          height="70px"
-          width="70px"
-          margin="0px 0px 10px 0px"
-          padding="0px"
-        /> */}
         <ImgWrapper>
-          <Img
-            height="70px"
-            width="70px"
-            margin="0px 0px 10px 0px"
-            src={data.img}
-            alt={data.img}
-          />
+          {data.image.length > 0 ? (
+            <Img
+              height="70px"
+              width="70px"
+              margin="0px 0px 10px 0px"
+              fontsize="11px"
+              src={jobPostImage}
+              alt={jobPostImage}
+            />
+          ) : (
+            <SkeletonBox
+              height="70px"
+              width="70px"
+              margin="0px 0px 10px 0px"
+              padding="0px"
+            />
+          )}
+
         </ImgWrapper>
         <TitleboxModalSecondText content={data.title} size="14px" weight="bold" />
         <TitleboxModalSecondText content={data.author.name} size="10px" color="#757575" />
