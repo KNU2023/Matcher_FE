@@ -1,24 +1,27 @@
-import { configureStore } from "@reduxjs/toolkit";
-import jobPostCategorySlice from "./jobPostCategorySlice";
-import mailCategorySlice from "./mailCategorySlice";
-import reserveCategorySlice from "./reserveCategorySlice";
-import signUpSlice from "./signUpSlice";
-import signInSlice from "./signInSlice";
-import authSlice from "./authSlice";
-import reserveSlice from "./reserveSlice";
-import jobPostSlice from "./jobPostSlice";
+import { createSlice } from '@reduxjs/toolkit';
 
-const store = configureStore({
-    reducer: {
-        jobPostCategory: jobPostCategorySlice.reducer,
-        mailCategory: mailCategorySlice.reducer,
-        reserveCategory: reserveCategorySlice.reducer,
-        signup: signUpSlice.reducer,
-        signin: signInSlice.reducer,
-        auth: authSlice.reducer,
-        reserve: reserveSlice.reducer,
-        jobpost: jobPostSlice.reducer,
-    }
-})
+const initialState = {
+  accessToken: localStorage.getItem('accessToken') || null,
+  refreshToken: localStorage.getItem('refreshToken') || null,
+};
 
-export default store;
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setTokens: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+    },
+    clearTokens: (state) => {
+      state.accessToken = null;
+      state.refreshToken = null;
+    },
+  },
+});
+
+export const { setTokens, clearTokens } = authSlice.actions;
+export const selectAccessToken = (state) => state.auth.accessToken;
+export const selectRefreshToken = (state) => state.auth.refreshToken;
+
+export default authSlice;

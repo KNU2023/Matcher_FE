@@ -3,61 +3,23 @@ import TitleboxModalSecondText from "../../molecules/text/TitleboxModalSecondTex
 import TitleboxModalText from "../../molecules/text/TitleboxModalText";
 import styled from "styled-components";
 import ButtonMail from "../button/ButtonMail";
-import ButtonMailDelete from "../button/ButtonMailDelete";
 import { IoMdCloseCircle } from "react-icons/io";
-import axios from "axios";
 
-const ModalMailDialogBox = ({ id, content, senderEmail, date, receiverEmail, closeModal }) => {
-    // console.log("content", content);
-    // console.log("receiverEmail", receiverEmail);
-    // console.log("senderEmail", senderEmail);
-    // console.log("date", date);
-
-    const onClickDeleteMail = async () => {
-        const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
-
-        if (confirmDelete) {
-            try {
-                // 서버로 DELETE 요청 보내기
-                const accessToken = localStorage.getItem("accessToken");
-                const response = await axios.delete(`/api/message/${id}`, {
-                    headers: {
-                        'Authorization': accessToken,
-                    },
-                });
-
-                // 응답 확인
-                console.log(response.data);
-
-                // 삭제 성공 시 추가 동작 수행
-                alert('메시지가 성공적으로 삭제되었습니다.');
-
-                // 모달 닫기 등 다른 동작 수행
-                // closeModal();
-                window.location.reload();
-            } catch (error) {
-                // 오류가 발생했을 때 처리
-                console.error('Error deleting message:', error);
-                alert('메시지 삭제 중 오류가 발생했습니다.');
-            }
-        }
-    };
-
+const ModalMailDialogBox = ({ closeModal }) => {
     return (
         <>
             <DialogBox>
                 <Xbox>
                     <IoMdCloseCircle size="25" color="#03C75A" cursor="pointer" onClick={closeModal} />
                 </Xbox>
-                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content={`발신자: ${senderEmail}`} />
-                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content={`송신자: ${receiverEmail}`} />
-                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content={date} />
+                <TitleboxModalText margin="0px 0px 13px 0px" justifyContent="left" content="종프 팀원 한분 찾습니다." />
+                <TitleboxModalSecondText margin="0px 0px 13px 0px" size="16px" color="#757575" content="컴학3학년" />
+                <TitleboxModalSecondText margin="0px 0px 10px 0px" size="12px" color="#757575" content="2023.11.02" />
                 <StyleLine />
                 <BoxWrapper>
-                    {content}
+                    예약 보고 문의드립니다. 혹시 같이하실 생각없으시나요?
                 </BoxWrapper>
                 <ButtonWrapper>
-                    <ButtonMailDelete onClick={onClickDeleteMail} />
                     <ButtonMail />
                 </ButtonWrapper>
             </DialogBox>
