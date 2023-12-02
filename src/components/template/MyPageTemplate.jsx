@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import MyPageJob from "../organisms/MyPageJob";
 import MyPageReserve from "../organisms/MyPageReserve";
+import ProfileImg from "../atoms/img/ProfileImg.jsx";
 
 const MyPageTemplate = () => {
     const [userName, setUserName] = useState(null);
@@ -54,7 +55,7 @@ const MyPageTemplate = () => {
         <>
             <Wrapper>
                 <ProfileBox>
-                    <Img margin="11px 0px 11px 0px" width="111px" height="111px">{profile}</Img>
+                    <ProfileImg margin="11px 0px 11px 0px" width="111px" height="111px">{profile}</ProfileImg>
                     <ProfileText content={userName} margin="0px 0px 87px 0px" />
                     <MyprofileNavigation />
                     <LittleText onClick={handleButtonClick}>로그아웃</LittleText>

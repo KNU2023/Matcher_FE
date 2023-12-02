@@ -57,7 +57,7 @@ const DialogSkeleton = ({ data }) => {
               width="70px"
               margin="0px 0px 10px 0px"
               fontsize="11px"
-              src={`http://localhost:5173/api/${jobPostImage[0]}`}
+              src={`http://localhost:8080${jobPostImage[0]}`}
               alt={jobPostImage}
             />
           ) : (

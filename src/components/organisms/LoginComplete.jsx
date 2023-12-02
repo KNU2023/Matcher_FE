@@ -3,13 +3,14 @@ import LoginWrapper from "../molecules/div/LoginWrapper";
 import styled from "styled-components";
 import profile from "../../assets/profile.svg";
 import lock from "../../assets/lock.svg";
-import Img from "../atoms/img/Img";
 import ButtonLogout from "./button/ButtonLogout";
 import Smalltitle from "../molecules/text/Smalltitle";
 import LogoutTitle from "../molecules/text/LogoutTitle";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Img from "../atoms/img/Img";
+import ProfileImg from "../atoms/img/ProfileImg";
 
 const LoginComplete = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const LoginComplete = () => {
       <LoginWrapper>
         <LoginBox>
           <SectionBox>
-            <Img margin="11px 0px 0px 0px">{profile}</Img>
+            <ProfileImg margin="11px 0px 0px 0px">{profile}</ProfileImg>
             <ContentBox>
               <ButtonLogout />
               <ContentWrapper>
