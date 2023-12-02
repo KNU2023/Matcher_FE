@@ -6,8 +6,10 @@ import IDSignInput from "../../molecules/input/IDSignInput";
 import PWSignInput from "../../molecules/input/PWSignInput";
 import ButtonSignIn from "../button/ButtonSignIn";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = ({ formData, setFormData }) => {
+    const navigate = useNavigate();
 
     const IDchange = (e) => {
         setFormData({
@@ -25,12 +27,12 @@ const SignInForm = ({ formData, setFormData }) => {
         // console.log(e.target.value);
     }
 
-    const submitHandler = async () => {
+    const submitHandler = async() => {
         // formData에 저장된 값 출력
         try {
             const email = formData.email;
             const password = formData.password;
-            const response = await axios.get(`/api/login?id=${email}&pw=${password}`);
+            const response = await axios.get(`http://localhost:8080/login?id=${email}&pw=${password}`);
 
             const accessToken = response.data.accessToken;
             const refreshToken = response.data.refreshToken;
@@ -39,14 +41,15 @@ const SignInForm = ({ formData, setFormData }) => {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             alert("로그인 성공!")
-            window.location.replace("/")
+            navigate('/');
+            window.location.reload();
         } catch (error) {
             console.error('Login failed:', error.message);
         }
 
     };
 
-    return ( 
+    return (
         <>
             <IDFormWrapper>
                 <IDFormBox>

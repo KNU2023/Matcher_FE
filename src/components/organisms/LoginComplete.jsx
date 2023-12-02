@@ -8,6 +8,8 @@ import ButtonLogout from "./button/ButtonLogout";
 import Smalltitle from "../molecules/text/Smalltitle";
 import LogoutTitle from "../molecules/text/LogoutTitle";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const LoginComplete = () => {
   const navigate = useNavigate();
@@ -15,6 +17,36 @@ const LoginComplete = () => {
   const onClickMypage = () => {
     navigate("/mypage");
   };
+
+  const [userData, setUserData] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        //console.log(accessToken);
+        // 데이터를 가져오는 API 호출
+        const response = await axios.get('/api/user', {
+          headers: {
+            'Authorization': accessToken,
+          },
+        });
+
+        // 가져온 데이터를 state에 저장
+        setUserData(response.data);
+        setUserName(response.data.name);
+        setUserEmail(response.data.email);
+        //console.log(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    // 컴포넌트가 마운트될 때 데이터를 가져오도록 useEffect에서 호출
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -25,7 +57,7 @@ const LoginComplete = () => {
             <ContentBox>
               <ButtonLogout />
               <ContentWrapper>
-                <LogoutTitle size="14" weight="bold" content="이름님" />
+                <LogoutTitle size="14" weight="bold" content={userName} />
                 <DivideBar />
                 <Smalltitle color="#606060" content="Matcher ID" />
                 <Img margin="0px 0px 0px 4px">{lock}</Img>
@@ -33,7 +65,7 @@ const LoginComplete = () => {
               <Smalltitle
                 justifyContent="left"
                 weight="bold"
-                content="k546kh@gmail.com"
+                content={userEmail}
               />
             </ContentBox>
           </SectionBox>

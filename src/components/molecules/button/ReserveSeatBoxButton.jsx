@@ -1,7 +1,7 @@
 import ClickButton from '../../atoms/button/ClickButton';
 import styled from 'styled-components';
 
-const ReserveSeatBoxButton = ({ id, rowNumber, colNumber, booker, onClick, isActive  }) => {
+const ReserveSeatBoxButton = ({ id, rowNumber, colNumber, booker, onClick, isActive }) => {
 
     //console.log("booker 제대로", booker);
 

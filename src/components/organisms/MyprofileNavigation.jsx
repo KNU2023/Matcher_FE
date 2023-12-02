@@ -6,15 +6,12 @@ import axios from "axios";
 const MyprofileNavigation = () => {
     const navigate = useNavigate();
     const location = useLocation();
-
     const onClickMyprofile = () => {
         navigate("/mypage");
     };
-
     const onClickReservation = () => {
         navigate("/mypage/reservation");
     };
-
     const onClickJobPost = () => {
         navigate("/mypage/jobpost");
     }

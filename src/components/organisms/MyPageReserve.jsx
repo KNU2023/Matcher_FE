@@ -56,17 +56,14 @@ const ReserveWrapper = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: auto;
-
     &::-webkit-scrollbar {
         width: 8px;
         height: 0px;
     }
-
     &::-webkit-scrollbar-thumb {
         background-color: #c0c0c0;
         border-radius: 4px;
     }
-
     &::-webkit-scrollbar-track {
         background-color: #f1f1f1;
     }

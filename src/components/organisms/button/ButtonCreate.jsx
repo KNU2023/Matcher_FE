@@ -1,10 +1,10 @@
 import Dialogbutton from "../../molecules/button/Dialogbutton";
 
-const ButtonCreate = ({ onClick, type }) => {
+const ButtonCreate = ({onClick}) => {
 
 
     return (
-        <Dialogbutton type={type} title="계속" margin="5px" onClick={onClick} />
+        <Dialogbutton title="생성하기" margin="5px" onClick={onClick} />
     )
 }
 

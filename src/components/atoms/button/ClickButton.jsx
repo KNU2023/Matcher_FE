@@ -13,13 +13,11 @@ const StyledButton = styled.button`
   margin: ${props => props.margin || '0'};
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
-
   &:hover {
     background-color: ${props => props.hoverStyle?.backgroundColor || props.backgroundColor};
     box-shadow: ${props => props.hoverStyle?.boxShadow || props.boxShadow};
     color: ${props => props.hoverStyle?.color || props.color};
   }
-
   &.active {
     background-color: ${props => props.activeStyle?.backgroundColor || props.backgroundColor};
     border: ${props => props.activeStyle?.border || props.border};

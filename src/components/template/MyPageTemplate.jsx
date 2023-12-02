@@ -5,7 +5,7 @@ import ProfileText from "../molecules/text/ProfileText";
 import Img from "../atoms/img/Img";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditUserForm from "../organisms/input/EditUserForm";
+import EditUserForm from "../organisms/input/EditUserForm.jsx";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import MyPageJob from "../organisms/MyPageJob";
