@@ -8,7 +8,10 @@ import { useState } from "react";
 import axios from "axios";
 
 const DialogSkeleton = ({ data }) => {
- 
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [jobPostId, setJobPostId] = useState(null);
+  const [jobPostTitle, setJobPostTitle] = useState(null);
+  const [jobPostName, setJobPostName] = useState(null);
   const [jobPostdate, setJobPostdate] = useState(null);
   const [jobPostContent, setJobPostContent] = useState(null);
   const [jobPostCommentList, setJobPostCommentList] = useState([]);
@@ -40,6 +43,10 @@ const DialogSkeleton = ({ data }) => {
     }
   }
 
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+
   return (
     <>
       <ContentBox onClick={openModal}>
@@ -48,7 +55,6 @@ const DialogSkeleton = ({ data }) => {
           width="70px"
           margin="0px 0px 10px 0px"
           padding="0px"
-
         /> */}
         <ImgWrapper>
           <Img
@@ -62,14 +68,26 @@ const DialogSkeleton = ({ data }) => {
         <TitleboxModalSecondText content={data.title} size="14px" weight="bold" />
         <TitleboxModalSecondText content={data.author.name} size="10px" color="#757575" />
         <TitleboxModalSecondText content={data.date} size="8px" color="#757575" />
-
       </ContentBox>
+      {/* {console.log("커멘트", jobPostCommentList)} */}
+      {isModalOpen && (
+        <ModalWrapper>
+          <ModalJobpostDialogBox
+            closeModal={closeModal}
+            id={jobPostId}
+            title={jobPostTitle}
+            name={jobPostName}
+            date={jobPostdate}
+            content={jobPostContent}
+            commentList={jobPostCommentList}
+          />
+        </ModalWrapper>
+      )}
     </>
   );
 };
 
 export default DialogSkeleton;
-
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -83,4 +101,3 @@ const ImgWrapper = styled.div`
   height: 70px;
   width: 70px;
 `;
-
