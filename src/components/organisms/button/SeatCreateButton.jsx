@@ -13,8 +13,8 @@ const SeatCreateButton = ({ onSeatSelect }) => {
             const seatId = createSeatId(rowIndex + 1, columnIndex + 1);
             return {
                 id: seatId,
-                rowNumber: rowIndex + 1,
-                colNumber: columnIndex + 1,
+                rowNumber: rowIndex,
+                colNumber: columnIndex,
             };
         })
     ).flat();
