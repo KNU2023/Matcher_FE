@@ -1,6 +1,6 @@
 import Input from "../../atoms/input/Input";
 
-const ImageInput = ({ id, width, height, color, value, onChange, marginTop, marginBottom, padding, borderRadius }) => {
+const ImageInput = ({ id, width, height, color, value, onChange, marginTop, marginBottom, padding }) => {
     return (
         <>
             <Input
@@ -14,7 +14,6 @@ const ImageInput = ({ id, width, height, color, value, onChange, marginTop, marg
                 marginBottom={marginBottom}
                 value={value}
                 onChange={onChange}
-                borderRadius="0px"
             />
         </>
     )

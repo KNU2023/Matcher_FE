@@ -1,7 +1,6 @@
 import ProfileText from "../molecules/text/ProfileText";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 
 const MyprofileNavigation = () => {
     const navigate = useNavigate();
@@ -14,31 +13,6 @@ const MyprofileNavigation = () => {
     };
     const onClickJobPost = () => {
         navigate("/mypage/jobpost");
-    }
-
-    const onClickDeleteUser = async () => {
-        confirm("정말로 탈퇴하시겠습니까?");
-        if (confirm) {
-            try {
-                const accessToken = localStorage.getItem("accessToken");
-                const response = await axios.delete('/api/user', {
-                    headers: {
-                        'Authorization': accessToken,
-                    },
-                });
-                console.log(response.data);
-
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('refreshToken');
-
-                alert("탈퇴되었습니다.");
-                window.location.replace("/");
-
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                throw new Error(error);
-            }
-        }
     }
 
     return (
@@ -66,9 +40,8 @@ const MyprofileNavigation = () => {
                     active={location.pathname === "/mypage/jobpost"}
                 />
                 <ProfileText
-                    content="탈퇴하기"
+                    content="앱 정보"
                     cursor="pointer"
-                    onClick={onClickDeleteUser}
                 />
             </NavigationWrapper>
         </>

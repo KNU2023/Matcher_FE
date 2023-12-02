@@ -7,9 +7,9 @@ const signUpSlice = createSlice({
     formData: {
       email: '',
       password: '',
-      name: '',
+      studentNumber: '',
       major: '',
-      stdNumber: '',
+      nickname: '',
     },
   },
   reducers: {
