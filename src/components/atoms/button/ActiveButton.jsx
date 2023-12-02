@@ -1,3 +1,4 @@
+// ActiveButton.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -28,60 +29,61 @@ const StyledButton = styled.button`
 `;
 
 const ActiveButton = ({
-    children,
-    key,
-    width,
-    height,
-    fontSize,
-    color,
-    borderRadius,
-    border,
-    backgroundColor,
-    boxShadow,
-    margin,
-    activeStyle,
-    hoverStyle,
+  children,
+  key,
+  width,
+  height,
+  fontSize,
+  color,
+  borderRadius,
+  border,
+  backgroundColor,
+  boxShadow,
+  margin,
+  activeStyle,
+  hoverStyle,
+  onClick, // Add this line
 }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-    const handleButtonClick = () => {
-        setIsActive(!isActive); // 클릭 시 isActive를 토글
-    };
+  const handleButtonClick = () => {
+    setIsActive(!isActive);
+    onClick && onClick(); // Call the provided onClick function if available
+  };
 
-    return (
-        <>
-            <StyledButton
-                key={key}
-                width={width}
-                height={height}
-                fontSize={fontSize}
-                color={color}
-                borderRadius={borderRadius}
-                border={border}
-                backgroundColor={backgroundColor}
-                boxShadow={boxShadow}
-                margin={margin}
-                onClick={handleButtonClick}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                className={isActive ? 'active' : ''}
-                activeStyle={activeStyle}
-                hoverStyle={isHovered ? hoverStyle : null}
-            >
-                {children}
-            </StyledButton>
-        </>
-
-    );
+  return (
+    <>
+      <StyledButton
+        key={key}
+        width={width}
+        height={height}
+        fontSize={fontSize}
+        color={color}
+        borderRadius={borderRadius}
+        border={border}
+        backgroundColor={backgroundColor}
+        boxShadow={boxShadow}
+        margin={margin}
+        onClick={handleButtonClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={isActive ? 'active' : ''}
+        activeStyle={activeStyle}
+        hoverStyle={isHovered ? hoverStyle : null}
+      >
+        {children}
+      </StyledButton>
+    </>
+  );
 };
 
 export default ActiveButton;
