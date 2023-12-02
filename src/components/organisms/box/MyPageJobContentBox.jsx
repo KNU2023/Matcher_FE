@@ -21,8 +21,8 @@ const MyPageJobContentBox = ({ title, date, jobPostId, author }) => {
     }
 
     const onClickDelete = () => {
-        confirm('정말로 삭제하시겠습니까?');
-        if (confirm) {
+        const isConfirmed = window.confirm('정말로 삭제하시겠습니까?');
+        if (isConfirmed ) {
             try {
                 const accessToken = localStorage.getItem("accessToken");
                 const response = axios.delete(`/api/jobpost/${jobPostId}`, {
