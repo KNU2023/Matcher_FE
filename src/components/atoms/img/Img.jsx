@@ -15,7 +15,7 @@ const StyledImg = styled.img`
 
 
 
-const Img = ({ children, padding, margin, width, height, alt, fontsize }) => {
+const Img = ({ src, padding, margin, width, height, alt, fontsize }) => {
   
   return (
     <>
@@ -25,7 +25,7 @@ const Img = ({ children, padding, margin, width, height, alt, fontsize }) => {
         padding={padding}
         margin={margin}
         fontsize={fontsize}
-        src={children}
+        src={src}
         alt={alt}
       />
     </>
