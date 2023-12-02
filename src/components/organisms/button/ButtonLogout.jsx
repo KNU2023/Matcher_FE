@@ -5,7 +5,10 @@ import { HiOutlineLogout } from 'react-icons/hi';
 
 const ButtonReservation = () => {
     const handleButtonClick = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         alert('로그아웃되었습니다.');
+        window.location.reload();
     };
 
     return (

@@ -7,12 +7,15 @@ import TitleMainBox from "../molecules/div/TitleMainBox";
 import TitleMainBoxText from "../molecules/text/TitleMainBoxText";
 import { useNavigate, useLocation } from "react-router-dom";
 import ReserveCreateBox from "../organisms/box/ReserveCreateBox";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "../../store/authSlice";
+import LoginComplete from "../organisms/LoginComplete";
 
 
 const ReservationCreateTemplate = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const accessToken = useSelector(selectAccessToken);
 
     const onClickReserve = () => {
         navigate("/");
@@ -40,7 +43,7 @@ const ReservationCreateTemplate = () => {
                 </MainBox>
                 <ContentWrapper>
                     <Category />
-                    <Login />
+                    {accessToken ? <LoginComplete /> : <Login />}
                     <Alarm />
                 </ContentWrapper>
             </Wrapper>

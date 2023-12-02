@@ -1,6 +1,6 @@
 import Text from "../../atoms/text/Text";
 
-const TitleboxModalSecondText = ({ size, content, color, margin, onClick }) => {
+const TitleboxModalSecondText = ({ size, content, color, margin, weight, onClick }) => {
     return (
         <>
             <Text
@@ -11,6 +11,7 @@ const TitleboxModalSecondText = ({ size, content, color, margin, onClick }) => {
                 flexDirection="row"
                 justifyContent="left"
                 textAlign="left"
+                weight={weight}
                 margin={margin}
                 onClick={onClick}
             >

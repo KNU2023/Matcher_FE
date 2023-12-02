@@ -13,7 +13,7 @@ const IconboxMail = () => {
     const isActive = useSelector((state) => state.mailCategory.isActive);
 
     useEffect(() => {
-        if (location.pathname === "/mail") {
+        if (location.pathname === "/mail" || location.pathname === "/mail/write") {
             dispatch(setIsActive(true));
         } else {
             dispatch(setIsActive(false));
