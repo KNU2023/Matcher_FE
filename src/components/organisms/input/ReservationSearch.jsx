@@ -18,16 +18,16 @@ const IconWrapper = styled.div`
     margin: ${props => props.margin || '0px'}; /* margin을 prop으로 받아 설정 */
 `;
 
-const ReservationSearch = ({ onChange, onClick }) => {
+const ReservationSearch = () => {
     return (
         <>
             <SearchWrapper>
                 <IconWrapper margin="0px 10px 0px 0px"> {/* 아이콘 간격을 조절할 margin 값을 설정 */}
                     <AiOutlineFileMarkdown size="25px" color="#2F9B79" />
                 </IconWrapper>
-                <TitleInput onChange={onChange} />
+                <TitleInput />
                 <IconWrapper margin="0px 0px 0px 25px"> {/* 아이콘 간격을 조절할 margin 값을 설정 */}
-                    <BiSearch size="25px" color="#2F9B79" onClick={onClick} />
+                    <BiSearch size="25px" color="#2F9B79" />
                 </IconWrapper>
             </SearchWrapper>
         </>

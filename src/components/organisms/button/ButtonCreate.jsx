@@ -1,10 +1,16 @@
 import Dialogbutton from "../../molecules/button/Dialogbutton";
+import { useNavigate } from "react-router-dom";
 
-const ButtonCreate = ({ onClick, type }) => {
+const ButtonCreate = () => {
+    const navigate = useNavigate();
 
+    const handleButtonClick = () => {
+        alert('생성되었습니다.');
+        navigate("/jobpost");
+    };
 
     return (
-        <Dialogbutton type={type} title="계속" margin="5px" onClick={onClick} />
+        <Dialogbutton title="생성하기" margin="5px" onClick={handleButtonClick} />
     )
 }
 

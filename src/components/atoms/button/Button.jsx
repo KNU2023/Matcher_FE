@@ -35,7 +35,6 @@ const Button = ({
   margin,
   onClick,
   hoverStyle,
-  type
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -65,7 +64,6 @@ const Button = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         hoverStyle={isHovered ? hoverStyle : null}
-        type={type}
       >
         {children}
       </StyledButton>

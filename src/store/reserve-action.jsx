@@ -1,36 +1,29 @@
-import axios from "axios";
 import { reserveAction } from "./reserveSlice";
 
-export const axiosReserveData = (requestData) => {
+export const axiosReserveData = () => {
     return async (dispatch) => {
-        try {
-            const accessToken = localStorage.getItem("accessToken");
-            const response = await axios.post("/api/reservationpost", requestData, {
-                headers: {
-                    'Authorization': accessToken,
-                },
-            });
+        const axiosData = async () => {
+            const response = await axios("http://localhost:8080/reservation");
 
-            if (response.status !== 200) {
-                throw new Error("예약 데이터를 가져올 수 없습니다!");
+            if(!response.ok){
+                throw new Error("Could not axios Reserve Data!")
             }
 
-            const data = response.data;
+            const data = await response.json();
+
+            return data;
+        };
+
+        try {
+            const reserveData = await axiosData();
 
             dispatch(
-                reserveAction.updateReserveData({
-                    items: {
-                        title: data.title,
-                        content: data.content,
-                        rowSize: data.rowSize,
-                        colSize: data.colSize,
-                        disableSeatList: data.disableSeatList || [],
-                    },
+                reserveAction.replaceReserveData({
+                    items: reserveData.items || [],
                 })
             );
-        } catch (error) {
-            console.error("예약 데이터를 가져오는 중 오류 발생:", error.message);
-            throw new Error(`예약 데이터를 가져오는 중 오류 발생: ${error.message}`);
+        } catch(error){
+            //error
         }
-    };
-};
+    }
+}

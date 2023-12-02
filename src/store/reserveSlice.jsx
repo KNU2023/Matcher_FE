@@ -3,22 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const reserveSlice = createSlice({
     name: "reserveData",
     initialState: {
-        formData: {
-            title: '',
-            content: '',
-            rowSize: 0,
-            colSize: 0,
-            disableSeatList: [],
-        },
+        items: [
+            [],
+        ],
     }, reducers: {
-        updateReserveData(state, action) {
-            state.formData = { ...state.formData, ...action.payload };
+        replaceReserveData(state, action) {
+            state.items = action.payload.items;
         },
 
     }
 });
 
 
-export const reserveAction = reserveSlice.actions;
+export const { reserveAction, replaceReserveData } = reserveSlice.actions;
 
 export default reserveSlice;
